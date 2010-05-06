@@ -19,8 +19,6 @@ module DataMapper
         property :shared, Boolean
         property :uri,    URI
         property :tags,   Yaml
-
-        auto_migrate!
       end # Bookmark
     end
   end

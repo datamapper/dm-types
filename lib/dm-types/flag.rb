@@ -1,38 +1,28 @@
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class Flag < Type
-      primitive Integer
+  class Property
+    class Flag < Integer
+      accept_options :flags
 
-      def self.inherited(target)
-        target.instance_variable_set('@primitive', self.primitive)
-      end
+      attr_reader :flag_map
 
-      def self.flag_map
-        @flag_map
-      end
+      def initialize(model, name, options = {}, type = nil)
+        super
 
-      def self.flag_map=(value)
-        @flag_map = value
-      end
+        @flag_map = {}
 
-      def self.new(*flags)
-        type = Class.new(Flag)
-        type.flag_map = {}
-
+        flags = options.fetch(:flags)
         flags.each_with_index do |flag, i|
-          type.flag_map[i] = flag
+          flag_map[i] = flag
         end
-
-        type
       end
 
-      def self.[](*flags)
-        new(*flags)
+      def custom?
+        true
       end
 
-      def self.load(value, property)
+      def load(value)
         return [] if value.nil? || value <= 0
 
         begin
@@ -48,13 +38,13 @@ module DataMapper
         end
       end
 
-      def self.dump(value, property)
+      def dump(value)
         return if value.nil?
         flags = Array(value).map { |flag| flag.to_sym }.flatten
         flag_map.invert.values_at(*flags).compact.inject(0) { |sum, i| sum += 1 << i }
       end
 
-      def self.typecast(value, property)
+      def typecast(value)
         case value
           when nil   then nil
           when Array then value.map {|v| v.to_sym}
@@ -62,5 +52,5 @@ module DataMapper
         end
       end
     end # class Flag
-  end # module Types
+  end # class Property
 end # module DataMapper

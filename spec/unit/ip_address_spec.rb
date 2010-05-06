@@ -1,16 +1,19 @@
 require 'spec_helper'
 
+require './spec/fixtures/network_node'
+
 try_spec do
-  describe DataMapper::Types::IPAddress do
+  describe DataMapper::Property::IPAddress do
     before :all do
       @stored = '81.20.130.1'
       @input  = IPAddr.new(@stored)
+      @property = DataMapper::Types::Fixtures::NetworkNode.properties[:ip_address]
     end
 
     describe '.dump' do
       describe 'when argument is an IP address given as Ruby object' do
         before :all do
-          @result = DataMapper::Types::IPAddress.dump(@input, :property)
+          @result = @property.dump(@input)
         end
 
         it 'dumps input into a string' do
@@ -20,7 +23,7 @@ try_spec do
 
       describe 'when argument is nil' do
         before :all do
-          @result = DataMapper::Types::IPAddress.dump(nil, :property)
+          @result = @property.dump(nil)
         end
 
         it 'returns nil' do
@@ -30,7 +33,7 @@ try_spec do
 
       describe 'when input is a blank string' do
         before :all do
-          @result = DataMapper::Types::IPAddress.dump('', :property)
+          @result = @property.dump('')
         end
 
         it 'retuns a blank string' do
@@ -42,7 +45,7 @@ try_spec do
     describe '.load' do
       describe 'when argument is a valid IP address as a string' do
         before :all do
-          @result = DataMapper::Types::IPAddress.load(@stored, :property)
+          @result = @property.load(@stored)
         end
 
         it 'returns IPAddr instance from stored value' do
@@ -52,7 +55,7 @@ try_spec do
 
       describe 'when argument is nil' do
         before :all do
-          @result = DataMapper::Types::IPAddress.load(nil, :property)
+          @result = @property.load(nil)
         end
 
         it 'returns nil' do
@@ -62,7 +65,7 @@ try_spec do
 
       describe 'when argument is a blank string' do
         before :all do
-          @result = DataMapper::Types::IPAddress.load('', :property)
+          @result = @property.load('')
         end
 
         it 'returns IPAddr instance from stored value' do
@@ -72,7 +75,7 @@ try_spec do
 
       describe 'when argument is an Array instance' do
         before :all do
-          @operation = lambda { DataMapper::Types::IPAddress.load([], :property) }
+          @operation = lambda { @property.load([]) }
         end
 
         it 'raises ArgumentError with a meaningful message' do
@@ -84,7 +87,7 @@ try_spec do
     describe '.typecast' do
       describe 'when argument is an IpAddr object' do
         before :all do
-          @result = DataMapper::Types::IPAddress.typecast(@input, :property)
+          @result = @property.typecast(@input)
         end
 
         it 'does not change the value' do
@@ -94,7 +97,7 @@ try_spec do
 
       describe 'when argument is a valid IP address as a string' do
         before :all do
-          @result = DataMapper::Types::IPAddress.typecast(@stored, :property)
+          @result = @property.typecast(@stored)
         end
 
         it 'instantiates IPAddr instance' do

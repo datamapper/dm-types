@@ -2,7 +2,7 @@ require 'dm-core'
 require 'uuidtools'  # must be ~>2.0
 
 module DataMapper
-  module Types
+  class Property
     # UUID Type
     # First run at this, because I need it. A few caveats:
     #  * Only works on postgres, using the built-in native uuid type.
@@ -38,24 +38,30 @@ module DataMapper
     #
     #  -- benburkert Nov 15, 08
     #
-    class UUID < DataMapper::Type
-      primitive String
-      length    36
+    class UUID < String
+      length 36
 
-      def self.load(value, property)
-        UUIDTools::UUID.parse(value) unless value.nil?
+      # We need to override this method otherwise typecast_to_primitive won't be called.
+      # In the future we will set primitive to UUIDTools::UUID but this can happen only
+      # when adapters can handle it
+      def primitive?(value)
+        value.kind_of?(UUIDTools::UUID)
       end
 
-      def self.dump(value, property)
+      def dump(value)
         value.to_s unless value.nil?
       end
 
-      def self.typecast(value, property)
-        if value.kind_of?(UUIDTools::UUID)
+      def load(value)
+        if primitive?(value)
           value
-        else
-          load(value, property)
+        elsif !value.nil?
+          UUIDTools::UUID.parse(value)
         end
+      end
+
+      def typecast_to_primitive(value)
+        load(value)
       end
     end
   end

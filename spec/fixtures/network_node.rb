@@ -32,8 +32,6 @@ module DataMapper
         def runs_ipv4?
           self.ip_address.ipv4?
         end
-
-        auto_migrate!
       end # NetworkNode
     end # Fixtures
   end # Types

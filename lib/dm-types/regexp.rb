@@ -1,20 +1,18 @@
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class Regexp < DataMapper::Type
-      primitive String
-
-      def self.load(value, property)
+  class Property
+    class Regexp < String
+      def load(value)
         ::Regexp.new(value) unless value.nil?
       end
 
-      def self.dump(value, property)
+      def dump(value)
         value.source unless value.nil?
       end
 
-      def self.typecast(value, property)
-        load(value, property)
+      def typecast(value)
+        load(value)
       end
     end
   end

@@ -2,34 +2,35 @@ require 'yaml'
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class Yaml < DataMapper::Type
-      primitive Text
+  class Property
+    class Yaml < Text
+      def custom?
+        true
+      end
 
-      def self.load(value, property)
+      def load(value)
         if value.nil?
           nil
-        elsif value.is_a?(String)
+        elsif value.is_a?(::String)
           ::YAML.load(value)
         else
           raise ArgumentError.new("+value+ of a property of YAML type must be nil or a String")
         end
       end
 
-      def self.dump(value, property)
+      def dump(value)
         if value.nil?
           nil
-        elsif value.is_a?(String) && value =~ /^---/
+        elsif value.is_a?(::String) && value =~ /^---/
           value
         else
           ::YAML.dump(value)
         end
       end
 
-      def self.typecast(value, property)
-        # No typecasting; leave values exactly as they're provided.
+      def typecast(value)
         value
       end
     end # class Yaml
-  end # module Types
+  end # class Property
 end # module DataMapper

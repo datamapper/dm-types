@@ -1,33 +1,26 @@
 require 'dm-core'
+require 'dm-types/yaml'
 
 module DataMapper
-  module Types
-
+  class Property
     class CommaSeparatedList < Yaml
-      # this must be set even though Yaml already
-      # uses String primitive
-      #
-      # current DM::Type behavior probably needs to
-      # be improved for cases like this
-      primitive String
-
-      def self.dump(value, property)
+      def dump(value)
         if value.nil?
           nil
-        elsif value.kind_of?(Array)
-          super(value, property)
-        elsif value.kind_of?(String)
+        elsif value.kind_of?(::Array)
+          super(value)
+        elsif value.kind_of?(::String)
           v = (value || "").split(",").
             compact.
             map { |i| i.downcase.strip }.
             reject { |i| i.blank? }.
             uniq
-          super(v, property)
+          super(v)
         else
           raise ArgumentError, "+value+ of CommaSeparatedList must be a string, an array or nil, but given #{value.inspect}"
         end
-      end # self.dump
+      end # dump
     end # CommaSeparatedList
 
-  end # Types
+  end # Property
 end # DataMapper

@@ -1,25 +1,31 @@
 require 'spec_helper'
 require 'shared/identity_function_group'
 
+require './spec/fixtures/person'
+
 try_spec do
-  describe DataMapper::Types::Json do
+  describe DataMapper::Property::Json do
+    before :all do
+      @property = DataMapper::Types::Fixtures::Person.properties[:positions]
+    end
+
     describe '.load' do
       describe 'when nil is provided' do
         it 'returns nil' do
-          DataMapper::Types::Json.load(nil, :property).should be_nil
+          @property.load(nil).should be_nil
         end
       end
 
       describe 'when Json encoded primitive string is provided' do
         it 'returns decoded value as Ruby string' do
-          DataMapper::Types::Json.load(JSON.dump(:value => 'JSON encoded string'), :property).should == { 'value' => 'JSON encoded string' }
+          @property.load(JSON.dump(:value => 'JSON encoded string')).should == { 'value' => 'JSON encoded string' }
         end
       end
 
       describe 'when something else is provided' do
         it 'raises ArgumentError with a meaningful message' do
           lambda {
-            DataMapper::Types::Json.load(:sym, :property)
+            @property.load(:sym)
           }.should raise_error(ArgumentError, '+value+ of a property of JSON type must be nil or a String')
         end
       end
@@ -28,31 +34,31 @@ try_spec do
     describe '.dump' do
       describe 'when nil is provided' do
         it 'returns nil' do
-          DataMapper::Types::Json.dump(nil, :property).should be_nil
+          @property.dump(nil).should be_nil
         end
       end
 
       describe 'when Json encoded primitive string is provided' do
         it 'does not do double encoding' do
-          DataMapper::Types::Json.dump('Json encoded string', :property).should == 'Json encoded string'
+          @property.dump('Json encoded string').should == 'Json encoded string'
         end
       end
 
       describe 'when regular Ruby string is provided' do
         it 'dumps argument to Json' do
-          DataMapper::Types::Json.dump('dump me (to JSON)', :property).should == 'dump me (to JSON)'
+          @property.dump('dump me (to JSON)').should == 'dump me (to JSON)'
         end
       end
 
       describe 'when Ruby array is provided' do
         it 'dumps argument to Json' do
-          DataMapper::Types::Json.dump([1, 2, 3], :property).should == '[1,2,3]'
+          @property.dump([1, 2, 3]).should == '[1,2,3]'
         end
       end
 
       describe 'when Ruby hash is provided' do
         it 'dumps argument to Json' do
-          DataMapper::Types::Json.dump({ :datamapper => 'Data access layer in Ruby' }, :property).
+          @property.dump({ :datamapper => 'Data access layer in Ruby' }).
             should == '{"datamapper":"Data access layer in Ruby"}'
         end
       end
@@ -67,7 +73,7 @@ try_spec do
         before :all do
           @input = { :library => 'DataMapper' }
 
-          @result = DataMapper::Types::Json.typecast(@input, :property)
+          @result = @property.typecast(@input)
         end
 
         it_should_behave_like 'identity function'
@@ -77,7 +83,7 @@ try_spec do
         before :all do
           @input = %w[ dm-core dm-more ]
 
-          @result = DataMapper::Types::Json.typecast(@input, :property)
+          @result = @property.typecast(@input)
         end
 
         it_should_behave_like 'identity function'
@@ -87,7 +93,7 @@ try_spec do
         before :all do
           @input = nil
 
-          @result = DataMapper::Types::Json.typecast(@input, :property)
+          @result = @property.typecast(@input)
         end
 
         it_should_behave_like 'identity function'
@@ -97,7 +103,7 @@ try_spec do
         before :all do
           @input = '{ "value": 11 }'
 
-          @result = DataMapper::Types::Json.typecast(@input, :property)
+          @result = @property.typecast(@input)
         end
 
         it 'decodes value from JSON' do
@@ -110,7 +116,7 @@ try_spec do
           @input      = SerializeMe.new
           @input.name = 'Hello!'
 
-          # @result = DataMapper::Types::Json.typecast(@input, :property)
+          # @result = @property.typecast(@input)
         end
 
         it 'attempts to load value from JSON string'

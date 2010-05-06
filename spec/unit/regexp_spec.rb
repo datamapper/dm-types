@@ -1,12 +1,22 @@
 require 'spec_helper'
 
 try_spec do
-  describe DataMapper::Types::Regexp  do
+  describe DataMapper::Property::Regexp  do
+    before :all do
+      class User
+        include DataMapper::Resource
+        property :id, Serial
+        property :regexp, Regexp
+      end
+
+      @property = User.properties[:regexp]
+    end
+
     describe '.load' do
       describe 'when argument is a string' do
         before :all do
           @input  = '[a-z]\d+'
-          @result = DataMapper::Types::Regexp.load(@input, :property)
+          @result = @property.load(@input)
         end
 
         it 'create a regexp instance from argument' do
@@ -17,7 +27,7 @@ try_spec do
       describe 'when argument is nil' do
         before :all do
           @input  = nil
-          @result = DataMapper::Types::Regexp.load(@input, :property)
+          @result = @property.load(@input)
         end
 
         it 'returns nil' do
@@ -30,7 +40,7 @@ try_spec do
       describe 'when argument is a regular expression' do
         before :all do
           @input  = /\d+/
-          @result = DataMapper::Types::Regexp.dump(@input, :property)
+          @result = @property.dump(@input)
         end
 
         it 'escapes the argument' do
@@ -41,7 +51,7 @@ try_spec do
       describe 'when argument is nil' do
         before :all do
           @input = nil
-          @result = DataMapper::Types::Regexp.dump(@input, :property)
+          @result = @property.dump(@input)
         end
 
         it 'returns nil' do

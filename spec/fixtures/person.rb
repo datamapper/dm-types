@@ -21,8 +21,6 @@ module DataMapper
         property :interests, CommaSeparatedList
 
         property :password, BCryptHash
-
-        auto_migrate!
       end
     end
   end

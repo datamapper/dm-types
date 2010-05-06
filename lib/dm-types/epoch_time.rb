@@ -1,24 +1,22 @@
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class EpochTime < DataMapper::Type
-      primitive Integer
-
-      def self.load(value, property)
-        if value.kind_of?(Integer)
-          Time.at(value)
+  class Property
+    class EpochTime < Integer
+      def load(value)
+        if value.kind_of?(::Integer)
+          ::Time.at(value)
         else
           value
         end
       end
 
-      def self.dump(value, property)
+      def dump(value)
         case value
-          when Integer, Time then value.to_i
-          when DateTime      then value.to_time.to_i
+          when ::Integer, ::Time then value.to_i
+          when ::DateTime      then value.to_time.to_i
         end
       end
     end # class EpochTime
-  end # module Types
+  end # class Property
 end # module DataMapper

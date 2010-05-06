@@ -1,7 +1,17 @@
 require 'spec_helper'
 
 try_spec do
-  describe DataMapper::Types::EpochTime do
+  describe DataMapper::Property::EpochTime do
+    before :all do
+      class User
+        include DataMapper::Resource
+        property :id, Serial
+        property :bday, EpochTime
+      end
+
+      @property = User.properties[:bday]
+    end
+
     describe '.dump' do
       describe 'when given Time instance' do
         before :all do
@@ -9,7 +19,7 @@ try_spec do
         end
 
         it 'returns timestamp' do
-          DataMapper::Types::EpochTime.dump(@input, :property).should == @input.to_i
+          @property.dump(@input).should == @input.to_i
         end
       end
 
@@ -19,7 +29,7 @@ try_spec do
         end
 
         it 'returns timestamp' do
-          DataMapper::Types::EpochTime.dump(@input, :property).should == Time.parse(@input.to_s).to_i
+          @property.dump(@input).should == Time.parse(@input.to_s).to_i
         end
       end
 
@@ -29,7 +39,7 @@ try_spec do
         end
 
         it 'returns value as is' do
-          DataMapper::Types::EpochTime.dump(@input, :property).should == @input
+          @property.dump(@input).should == @input
         end
       end
 
@@ -39,7 +49,7 @@ try_spec do
         end
 
         it 'returns value as is' do
-          DataMapper::Types::EpochTime.dump(@input, :property).should == @input
+          @property.dump(@input).should == @input
         end
       end
     end
@@ -47,14 +57,14 @@ try_spec do
     describe '.load' do
       describe 'when value is nil' do
         it 'returns nil' do
-          DataMapper::Types::EpochTime.load(nil, :property).should == nil
+          @property.load(nil).should == nil
         end
       end
 
       describe 'when value is an integer' do
         it 'returns time object from timestamp' do
           t = Time.now.to_i
-          DataMapper::Types::EpochTime.load(Time.now.to_i, :property).should == Time.at(t)
+          @property.load(Time.now.to_i).should == Time.at(t)
         end
       end
     end

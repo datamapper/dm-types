@@ -1,75 +1,56 @@
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class Enum < Type
-      primitive Integer
+  class Property
+    class Enum < Integer
+      accept_options :flags
 
-      def self.inherited(target)
-        target.instance_variable_set("@primitive", self.primitive)
-      end
+      attr_reader :flag_map
 
-      def self.flag_map
-        @flag_map
-      end
+      def initialize(model, name, options = {}, type = nil)
+        super
 
-      def self.flag_map=(value)
-        @flag_map = value
-      end
+        @flag_map = {}
 
-      def self.new(*flags)
-        enum = Class.new(Enum)
-        enum.flag_map = {}
-
+        flags = options.fetch(:flags)
         flags.each_with_index do |flag, i|
-          enum.flag_map[i + 1] = flag
+          @flag_map[i + 1] = flag
         end
 
-        enum
-      end
-
-      def self.[](*flags)
-        new(*flags)
-      end
-
-      def self.load(value, property)
-        self.flag_map[value]
-      end
-
-      def self.dump(value, property)
-        case value
-          when Array then value.collect { |v| self.dump(v, property) }
-          else            self.flag_map.invert[value]
-        end
-      end
-
-      def self.typecast(value, property)
-        # Attempt to typecast using the class of the first item in the map.
-        return value if value.nil?
-        case self.flag_map[1]
-          when Symbol then value.to_sym
-          when String then value.to_s
-          when Fixnum then value.to_i
-          else             value
-        end
-      end
-
-      def self.bind(property)
         if defined?(::DataMapper::Validations)
-          model = property.model
-
-          unless model.skip_auto_validation_for?(property)
-            if property.type.ancestors.include?(Types::Enum)
-              model.class_eval do
-                flag_map = property.type.flag_map
-                allowed  = flag_map.values_at(*flag_map.keys.sort)
-
-                validates_within property.name, options_with_message({ :set => allowed }, property, :within)
-              end
+          unless model.skip_auto_validation_for?(self)
+            if self.class.ancestors.include?(Property::Enum)
+              allowed = flag_map.values_at(*flag_map.keys.sort)
+              model.validates_within name, model.options_with_message({ :set => allowed }, self, :within)
             end
           end
         end
       end
+
+      def custom?
+        true
+      end
+
+      def load(value)
+        flag_map[value]
+      end
+
+      def dump(value)
+        case value
+        when ::Array then value.collect { |v| dump(v) }
+        else              flag_map.invert[value]
+        end
+      end
+
+      def typecast_to_primitive(value)
+        # Attempt to typecast using the class of the first item in the map.
+        case flag_map[1]
+        when ::Symbol then value.to_sym
+        when ::String then value.to_s
+        when ::Fixnum then value.to_i
+        else               value
+        end
+      end
     end # class Enum
-  end # module Types
+  end # class Property
 end # module DataMapper

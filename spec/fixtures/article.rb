@@ -31,8 +31,6 @@ module DataMapper
         before :valid? do
           self.slug = self.title
         end
-
-        auto_migrate!
       end # Article
     end
   end

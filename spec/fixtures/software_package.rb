@@ -29,8 +29,6 @@ module DataMapper
           property :installed_at,     DateTime
           property :installed_by,     String
         end
-
-        auto_migrate!
       end # SoftwarePackage
     end # Fixtures
   end # Types

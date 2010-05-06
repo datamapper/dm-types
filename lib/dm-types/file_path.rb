@@ -2,12 +2,15 @@ require 'pathname'
 require 'dm-core'
 
 module DataMapper
-  module Types
-    class FilePath < DataMapper::Type
-      primitive String
-      length    255
+  class Property
+    class FilePath < String
+      length 255
 
-      def self.load(value, property)
+      def primitive?(value)
+        value.kind_of?(Pathname)
+      end
+
+      def load(value)
         if value.blank?
           nil
         else
@@ -15,15 +18,14 @@ module DataMapper
         end
       end
 
-      def self.dump(value, property)
+      def dump(value)
         return nil if value.blank?
         value.to_s
       end
 
-      def self.typecast(value, property)
-        # Leave alone if a Pathname is given.
-        value.kind_of?(Pathname) ? value : load(value, property)
+      def typecast_to_primitive(value)
+        load(value)
       end
     end # class FilePath
-  end # module Types
+  end # class Property
 end # module DataMapper

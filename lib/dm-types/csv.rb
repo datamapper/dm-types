@@ -8,27 +8,25 @@ else
 end
 
 module DataMapper
-  module Types
-    class Csv < DataMapper::Type
-      primitive Text
-
-      def self.load(value, property)
+  class Property
+    class Csv < Text
+      def load(value)
         case value
-          when String then CSV.parse(value)
-          when Array  then value
+          when ::String then CSV.parse(value)
+          when ::Array  then value
           else
             nil
         end
       end
 
-      def self.dump(value, property)
+      def dump(value)
         case value
-          when Array  then CSV.generate { |csv| value.each { |row| csv << row } }
-          when String then value
+          when ::Array  then CSV.generate { |csv| value.each { |row| csv << row } }
+          when ::String then value
           else
             nil
         end
       end
     end # class Csv
-  end # module Types
+  end # class Property
 end # module DataMapper

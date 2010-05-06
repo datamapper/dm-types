@@ -2,20 +2,14 @@ require 'dm-core'
 require 'stringex'
 
 module DataMapper
-  module Types
-    class Slug < DataMapper::Type
-      primitive String
-      length    2000
-
+  class Property
+    class Slug < String
       # Maximum length chosen because URI type is limited to 2000
       # characters, and a slug is a component of a URI, so it should
       # not exceed the maximum URI length either.
+      length 2000
 
-      def self.load(value, property)
-        value
-      end
-
-      def self.dump(value, property)
+      def dump(value)
         return if value.nil?
 
         if value.respond_to?(:to_str)
@@ -25,9 +19,9 @@ module DataMapper
         end
       end
 
-      def self.escape(string)
+      def escape(string)
         string.to_url
       end
     end # class Slug
-  end # module Types
+  end # class Property
 end # module DataMapper

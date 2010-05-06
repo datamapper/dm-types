@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 try_spec do
-  describe DataMapper::Types::BCryptHash do
+  describe DataMapper::Property::BCryptHash do
     before :all do
       @clear_password   = 'DataMapper R0cks!'
       @crypted_password = BCrypt::Password.create(@clear_password)
@@ -13,13 +13,21 @@ try_spec do
         @b = 'Hi There'
       end
       @nonstandard_type2 = TestType.new
+
+      class User
+        include DataMapper::Resource
+        property :id, Serial
+        property :password, BCryptHash
+      end
+
+      @bcrypt_hash = User.properties[:password]
     end
 
     describe '.dump' do
       describe 'when argument is a string' do
         before :all do
           @input  = 'DataMapper'
-          @result = DataMapper::Types::BCryptHash.dump(@input, :property)
+          @result = @bcrypt_hash.dump(@input)
         end
 
         it 'returns instance of BCrypt::Password' do
@@ -34,7 +42,7 @@ try_spec do
       describe 'when argument is nil' do
         before :all do
           @input  = nil
-          @result = DataMapper::Types::BCryptHash.dump(@input, :property)
+          @result = @bcrypt_hash.dump(@input)
         end
 
         it 'returns nil' do
@@ -47,7 +55,7 @@ try_spec do
       describe 'when argument is a string' do
         before :all do
           @input  = 'DataMapper'
-          @result = DataMapper::Types::BCryptHash.load(@crypted_password, :property)
+          @result = @bcrypt_hash.load(@crypted_password)
         end
 
         it 'returns instance of BCrypt::Password' do
@@ -62,7 +70,7 @@ try_spec do
       describe 'when argument is nil' do
         before :all do
           @input  = nil
-          @result = DataMapper::Types::BCryptHash.load(@input, :property)
+          @result = @bcrypt_hash.load(@input)
         end
 
         it 'returns nil' do
@@ -75,7 +83,7 @@ try_spec do
       describe 'when argument is a string' do
         before :all do
           @input  = 'bcrypt hash'
-          @result = DataMapper::Types::BCryptHash.typecast(@input, :property)
+          @result = @bcrypt_hash.typecast(@input)
         end
 
         it 'casts argument to BCrypt::Password' do
@@ -90,7 +98,7 @@ try_spec do
       describe 'when argument is a blank string' do
         before :all do
           @input  = ''
-          @result = DataMapper::Types::BCryptHash.typecast(@input, :property)
+          @result = @bcrypt_hash.typecast(@input)
         end
 
         it 'casts argument to BCrypt::Password' do
@@ -105,7 +113,7 @@ try_spec do
       describe 'when argument is integer' do
         before :all do
           @input  = 2249
-          @result = DataMapper::Types::BCryptHash.typecast(@input, :property)
+          @result = @bcrypt_hash.typecast(@input)
         end
 
         it 'casts argument to BCrypt::Password' do
@@ -120,7 +128,7 @@ try_spec do
       describe 'when argument is hash' do
         before :all do
           @input  = { :cryptic => 'obscure' }
-          @result = DataMapper::Types::BCryptHash.typecast(@input, :property)
+          @result = @bcrypt_hash.typecast(@input)
         end
 
         it 'casts argument to BCrypt::Password' do
@@ -135,7 +143,7 @@ try_spec do
       describe 'when argument is nil' do
         before :all do
           @input  = nil
-          @result = DataMapper::Types::BCryptHash.typecast(@input, :property)
+          @result = @bcrypt_hash.typecast(@input)
         end
 
         it 'returns nil' do

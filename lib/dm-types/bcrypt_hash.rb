@@ -2,30 +2,33 @@ require 'dm-core'
 require 'bcrypt'
 
 module DataMapper
-  module Types
-    class BCryptHash < DataMapper::Type
-      primitive String
-      length    60
+  class Property
+    class BCryptHash < String
+      length 60
 
-      def self.load(value, property)
-        typecast(value, property)
+      def primitive?(value)
+        value.kind_of?(BCrypt::Password)
       end
 
-      def self.dump(value, property)
-        typecast(value, property)
-      end
-
-      def self.typecast(value, property)
+      def load(value)
         if value.nil?
           nil
         else
           begin
-            value.is_a?(BCrypt::Password) ? value : BCrypt::Password.new(value)
+            primitive?(value) ? value : BCrypt::Password.new(value)
           rescue BCrypt::Errors::InvalidHash
             BCrypt::Password.create(value, :cost => BCrypt::Engine::DEFAULT_COST)
           end
         end
       end
+
+      def dump(value)
+        load(value)
+      end
+
+      def typecast_to_primitive(value)
+        load(value)
+      end
     end # class BCryptHash
-  end # module Types
+  end # class Property
 end # module DataMapper
