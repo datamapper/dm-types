@@ -20,7 +20,7 @@ module DataMapper
 
         property :interests, CommaSeparatedList
 
-        property :password, BCryptHash
+        property :password, BCryptHash if defined?(DataMapper::Property::BCryptHash)
       end
     end
   end
