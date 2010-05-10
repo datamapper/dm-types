@@ -2,19 +2,17 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 describe DataMapper::Property::ParanoidBoolean do
   before :all do
+    Object.send(:remove_const, :Blog) if defined?(Blog)
     module ::Blog
       class Article
         include DataMapper::Resource
 
-        attr_reader :hook_called
-
         property :id,      Serial
         property :deleted, ParanoidBoolean
 
-        before :destroy do
-          @hook_called ||= 0
-          @hook_called += 1
-        end
+        before :destroy, :before_destroy
+
+        def before_destroy; end
       end
     end
 
@@ -41,7 +39,8 @@ describe DataMapper::Property::ParanoidBoolean do
         end
 
         it 'should run the destroy hook' do
-          method(:subject).should change { @resource.hook_called }.from(nil).to(1)
+          @resource.should_receive(:before_destroy).with(no_args)
+          subject
         end
       end
 
@@ -61,7 +60,8 @@ describe DataMapper::Property::ParanoidBoolean do
         end
 
         it 'should run the destroy hook' do
-          method(:subject).should change { @resource.hook_called }.from(nil).to(1)
+          @resource.should_receive(:before_destroy).with(no_args)
+          subject
         end
       end
     end
@@ -84,8 +84,9 @@ describe DataMapper::Property::ParanoidBoolean do
           method(:subject).should_not change { @resource.deleted }.from(false)
         end
 
-        it 'should not run the destroy hook when #destroy called' do
-          method(:subject).should_not change { @resource.hook_called }.from(nil)
+        it 'should not run the destroy hook' do
+          @resource.should_not_receive(:before_destroy).with(no_args)
+          subject
         end
       end
 
@@ -104,8 +105,9 @@ describe DataMapper::Property::ParanoidBoolean do
           method(:subject).should_not change { @resource.deleted }.from(false)
         end
 
-        it 'should not run the destroy hook when #destroy called' do
-          method(:subject).should_not change { @resource.hook_called }.from(nil)
+        it 'should not run the destroy hook' do
+          @resource.should_not_receive(:before_destroy).with(no_args)
+          subject
         end
       end
     end

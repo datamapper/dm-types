@@ -2,8 +2,8 @@ module DataMapper
   module Types
     module Paranoid
       module Base
-        def self.included(type)
-          type.extend ClassMethods
+        def self.included(model)
+          model.extend ClassMethods
         end
 
         def paranoid_destroy
@@ -26,7 +26,7 @@ module DataMapper
             super
           end
         end
-      end # module Methods
+      end # module Base
 
       module ClassMethods
         def with_deleted
