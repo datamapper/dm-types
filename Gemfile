@@ -84,7 +84,7 @@ group :runtime do # Runtime dependencies (as in the gemspec)
 
   gem 'dm-core',         DM_VERSION, :git => "#{DATAMAPPER}/dm-core.git"
   gem 'fastercsv',       '~> 1.5.0'
-  gem 'json_pure',       '~> 1.2.0'
+  gem 'json_pure',       '~> 1.4.3'
   gem 'uuidtools',       '~> 2.1.1'
   gem 'stringex',        '~> 1.1.0'
 
