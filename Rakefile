@@ -22,7 +22,6 @@ begin
     gem.add_dependency 'stringex',                    '~> 1.1.0'
 
     gem.add_development_dependency 'rspec',           '~> 1.3'
-    gem.add_development_dependency 'yard',            '~> 0.5'
     gem.add_development_dependency 'dm-validations',  '~> 0.10.3'
   end
 
