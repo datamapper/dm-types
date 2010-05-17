@@ -1,8 +1,10 @@
 require 'spec_helper'
 require 'shared/identity_function_group'
-require './spec/fixtures/person'
 
 try_spec do
+
+  require './spec/fixtures/person'
+
   describe DataMapper::Property::Yaml do
     before :all do
       @property = DataMapper::Types::Fixtures::Person.properties[:inventions]
