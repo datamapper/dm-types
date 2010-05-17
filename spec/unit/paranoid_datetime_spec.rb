@@ -21,6 +21,10 @@ describe DataMapper::Property::ParanoidDateTime do
 
   supported_by :all do
     describe 'Resource#destroy' do
+      before do
+        pending 'Does not work with < 1.8.7, see if backports fixes it' if RUBY_VERSION < '1.8.7'
+      end
+
       subject { @resource.destroy }
 
       describe 'with a new resource' do
@@ -114,6 +118,7 @@ describe DataMapper::Property::ParanoidDateTime do
 
     describe 'Model#with_deleted' do
       before do
+        pending 'Does not work with < 1.8.7, see if backports fixes it' if RUBY_VERSION < '1.8.7'
         @resource = @model.create
         @resource.destroy
       end

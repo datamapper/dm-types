@@ -29,6 +29,7 @@ try_spec do
         end
 
         it 'returns timestamp' do
+          pending 'Does not work with < 1.8.7, see if backports fixes it' if RUBY_VERSION < '1.8.7'
           @property.dump(@input).should == Time.parse(@input.to_s).to_i
         end
       end
