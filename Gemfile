@@ -82,7 +82,7 @@ group :runtime do # Runtime dependencies (as in the gemspec)
   end
 
   gem 'dm-core',         DM_VERSION, :git => "#{DATAMAPPER}/dm-core.git"
-  gem 'fastercsv',       '~> 1.5.0'
+  gem 'fastercsv',       '~> 1.5.3'
   gem 'json_pure',       '~> 1.4.3'
   gem 'uuidtools',       '~> 2.1.1'
   gem 'stringex',        '~> 1.1.0'
@@ -102,8 +102,8 @@ end
 group :quality do # These gems contain rake tasks that check the quality of the source code
 
   gem 'metric_fu',      '~> 1.3'
-  gem 'rcov',           '~> 0.9.7'
-  gem 'reek',           '~> 1.2.7'
+  gem 'rcov',           '~> 0.9.8'
+  gem 'reek',           '~> 1.2.8'
   gem 'roodi',          '~> 2.1'
   gem 'yard',           '~> 0.5'
   gem 'yardstick',      '~> 0.1'

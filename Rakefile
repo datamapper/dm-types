@@ -16,7 +16,7 @@ begin
     gem.rubyforge_project = 'datamapper'
 
     gem.add_dependency 'dm-core',                     '~> 1.0.0.rc2'
-    gem.add_dependency 'fastercsv',                   '~> 1.5.0'
+    gem.add_dependency 'fastercsv',                   '~> 1.5.3'
     gem.add_dependency 'json_pure',                   '~> 1.4.3'
     gem.add_dependency 'uuidtools',                   '~> 2.1.1'
     gem.add_dependency 'stringex',                    '~> 1.1.0'
