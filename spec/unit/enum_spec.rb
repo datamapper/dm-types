@@ -11,7 +11,7 @@ try_spec do
 
     describe '.dump' do
       before do
-        @enum = User.property(:enum, DataMapper::Property::Enum, :flags => [:first, :second, :third])
+        @enum = User.property(:enum, DataMapper::Property::Enum[:first, :second, :third])
       end
 
       it 'should return the key of the value match from the flag map' do

@@ -7,12 +7,18 @@ module DataMapper
 
       attr_reader :flag_map
 
+      def self.[](*values)
+        klass = ::Class.new(self)
+        klass.flags(values)
+        klass
+      end
+
       def initialize(model, name, options = {}, type = nil)
         super
 
         @flag_map = {}
 
-        flags = options.fetch(:flags)
+        flags = options.fetch(:flags, self.class.flags)
         flags.each_with_index do |flag, i|
           flag_map[i] = flag
         end

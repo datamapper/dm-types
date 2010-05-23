@@ -7,7 +7,7 @@ try_spec do
     describe '.dump' do
       before :all do
         @flag = DataMapper::Types::Fixtures::TShirt.property(
-          :stuff, DataMapper::Property::Flag, :flags => [:first, :second, :third, :fourth, :fifth])
+          :stuff, DataMapper::Property::Flag[:first, :second, :third, :fourth, :fifth])
       end
 
       describe 'when argument matches a value in the flag map' do
