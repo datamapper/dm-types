@@ -9,7 +9,7 @@ module DataMapper
       # not exceed the maximum URI length either.
       length 2000
 
-      def dump(value)
+      def typecast(value)
         return if value.nil?
 
         if value.respond_to?(:to_str)

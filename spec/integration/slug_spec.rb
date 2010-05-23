@@ -36,19 +36,25 @@ try_spec do
        ["La ley antipiratería reduce un 33% el tráfico online en Suecia", 'la-ley-antipirateria-reduce-un-33-percent-el-trafico-online-en-suecia'],
        ["L'Etat américain du Texas s'apprête à interdire Windows Vista", 'letat-americain-du-texas-sapprete-a-interdire-windows-vista']
       ].each do |title, slug|
-        describe "persisted with title '#{title}'" do
+        describe "set with title '#{title}'" do
           before :all do
             @resource = DataMapper::Types::Fixtures::Article.new(:title => title)
-            @resource.save.should be_true
-            @resource.reload
+            @resource.valid?.should be(true)
           end
 
           it "has slug equal to '#{slug}'" do
             @resource.slug.should == slug
           end
 
-          it 'can be found by slug' do
-            DataMapper::Types::Fixtures::Article.first(:slug => slug).should == @resource
+          describe "and persisted" do
+            before :all do
+              @resource.save.should be(true)
+              @resource.reload
+            end
+
+            it 'can be found by slug' do
+              DataMapper::Types::Fixtures::Article.first(:slug => slug).should == @resource
+            end
           end
         end
       end
