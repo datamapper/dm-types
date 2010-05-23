@@ -37,4 +37,3 @@ end # module DataMapper
 # which is required by any ruby class that uses a Hash underneath. Removing
 # this method does not cause any spec failures in Bcrypt::Password
 BCrypt::Password.class_eval { remove_method :hash }
-
