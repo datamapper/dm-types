@@ -16,7 +16,7 @@ try_spec do
             :tags   => %w[ misc ]
           )
 
-          @resource.save.should be_true
+          @resource.save.should be(true)
         end
 
         it 'can be found by uri' do
@@ -45,7 +45,7 @@ try_spec do
             :tags   => %w[ misc ]
           )
 
-          @resource.save.should be_true
+          @resource.save.should be(true)
         end
 
         it 'can be found by uri' do
@@ -79,7 +79,7 @@ try_spec do
         end
 
         it 'is perfectly valid (URI type does not provide auto validations)' do
-          @resource.save.should be_true
+          @resource.save.should be(true)
         end
       end
 
@@ -116,7 +116,7 @@ try_spec do
               :tags   => %w[ misc ]
             )
 
-            @resource.save.should be_true
+            @resource.save.should be(true)
           end
 
           it 'can be found by uri' do

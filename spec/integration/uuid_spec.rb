@@ -12,7 +12,7 @@ try_spec do
           @uuid        = UUIDTools::UUID.parse(@uuid_string)
           @resource    = DataMapper::Types::Fixtures::NetworkNode.new(:uuid => @uuid)
 
-          @resource.save.should be_true
+          @resource.save.should be(true)
         end
 
         describe 'when reloaded' do

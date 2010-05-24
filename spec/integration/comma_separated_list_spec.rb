@@ -17,7 +17,7 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be_true
+            @resource.save.should be(true)
             @resource.reload
           end
 
@@ -34,7 +34,7 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be_true
+            @resource.save.should be(true)
             @resource.reload
           end
 
@@ -61,7 +61,7 @@ try_spec do
 
         describe 'when dumped and loaded again' do
           before :all do
-            @resource.save.should be_true
+            @resource.save.should be(true)
             @resource.reload
           end
 
@@ -78,7 +78,7 @@ try_spec do
           end
 
           it 'has blank entries removed' do
-            @resource.interests.any? { |i| i.blank? }.should be_false
+            @resource.interests.any? { |i| i.blank? }.should be(false)
           end
 
           it 'has duplicates removed' do

@@ -19,7 +19,7 @@ try_spec do
       describe 'with multiple sizes' do
         describe 'dumped and loaded' do
           before do
-            @resource.save.should be_true
+            @resource.save.should be(true)
             @resource.reload
           end
 
@@ -36,7 +36,7 @@ try_spec do
 
         describe 'dumped and loaded' do
           before do
-            @resource.save.should be_true
+            @resource.save.should be(true)
             @resource.reload
           end
 
