@@ -1,5 +1,12 @@
 require 'dm-core'
 
+begin
+  # provide Time#utc_time for DateTime#to_time in AS
+  require 'active_support/core_ext/time/calculations'
+rescue LoadError
+  # do nothing, extlib is being used and does not require this method
+end
+
 module DataMapper
   class Property
     class EpochTime < Integer
