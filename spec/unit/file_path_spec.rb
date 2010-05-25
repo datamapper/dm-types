@@ -12,6 +12,18 @@ try_spec do
       @path  = Pathname.new(@input)
     end
 
+    describe '#valid?' do
+      describe "with a String" do
+        subject { @property.valid?(@input) }
+        it { subject.should be(true) }
+      end
+
+      describe "with a Pathname" do
+        subject { @property.valid?(@path) }
+        it { subject.should be(true) }
+      end
+    end
+
     describe '.dump' do
       describe 'when input is a string' do
         it 'does not modify input' do

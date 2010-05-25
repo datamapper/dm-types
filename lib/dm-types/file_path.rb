@@ -10,6 +10,10 @@ module DataMapper
         value.kind_of?(Pathname)
       end
 
+      def valid?(value, negated = false)
+        super || dump(value).kind_of?(::String)
+      end
+
       def load(value)
         if value.blank?
           nil

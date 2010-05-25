@@ -12,6 +12,10 @@ module DataMapper
         value.kind_of?(::Array) || value.kind_of?(::Hash)
       end
 
+      def valid?(value, negated = false)
+        super || dump(value).kind_of?(::String)
+      end
+
       def load(value)
         if value.nil?
           nil
