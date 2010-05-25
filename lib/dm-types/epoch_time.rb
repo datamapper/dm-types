@@ -14,7 +14,7 @@ module DataMapper
       def dump(value)
         case value
           when ::Integer, ::Time then value.to_i
-          when ::DateTime      then value.to_time.to_i
+          when ::DateTime        then value.to_time.to_i
         end
       end
     end # class EpochTime
