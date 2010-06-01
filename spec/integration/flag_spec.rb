@@ -11,14 +11,20 @@ try_spec do
           :writing     => 'Fork you',
           :has_picture => true,
           :picture     => :octocat,
-          :color       => :white,
-          :size        => [ :xs, :medium ]
+          :color       => :white
         )
+      end
+
+      describe 'with the default value' do
+        it 'returns it as an array' do
+          @resource.size.should eql([DataMapper::Types::Fixtures::TShirt.properties[:size].default])
+        end
       end
 
       describe 'with multiple sizes' do
         describe 'dumped and loaded' do
           before do
+            @resource.size = [ :xs, :medium ]
             @resource.save.should be(true)
             @resource.reload
           end

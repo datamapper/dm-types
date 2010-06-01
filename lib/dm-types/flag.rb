@@ -53,8 +53,8 @@ module DataMapper
       def typecast(value)
         case value
           when nil   then nil
-          when Array then value.map {|v| v.to_sym}
-          else value.to_sym
+          when ::Array then value.map {|v| v.to_sym}
+          else [value.to_sym]
         end
       end
     end # class Flag
