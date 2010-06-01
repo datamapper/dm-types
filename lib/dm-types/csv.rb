@@ -10,6 +10,10 @@ end
 module DataMapper
   class Property
     class Csv < Text
+      def primitive?(value)
+        super || value.kind_of?(::Array)
+      end
+
       def load(value)
         case value
           when ::String then CSV.parse(value)

@@ -79,6 +79,17 @@ try_spec do
             @result.should be_nil
           end
         end
+
+        describe 'when argument is an array' do
+          before :all do
+            @input  = [ 1, 2, 3 ]
+            @result = @property.load(@input)
+          end
+
+          it 'returns input as is' do
+            @result.should eql(@input)
+          end
+        end
       end
 
       describe '.dump' do
