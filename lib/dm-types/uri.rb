@@ -4,6 +4,8 @@ require 'dm-core'
 module DataMapper
   class Property
     class URI < String
+      # Maximum length chosen based on recommendation:
+      # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-an-url
       length 2000
 
       def custom?
@@ -17,9 +19,6 @@ module DataMapper
       def valid?(value, negated = false)
         super || primitive?(value) || value.kind_of?(::String)
       end
-
-      # Maximum length chosen based on recommendation:
-      # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-an-url
 
       def load(value)
         Addressable::URI.parse(value)
