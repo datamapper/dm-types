@@ -48,6 +48,10 @@ module DataMapper
         value.kind_of?(UUIDTools::UUID)
       end
 
+      def valid?(value, negated = false)
+        super || dump(value).kind_of?(::String)
+      end
+
       def dump(value)
         value.to_s unless value.nil?
       end
