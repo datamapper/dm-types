@@ -4,12 +4,12 @@ try_spec do
 
   require './spec/fixtures/bookmark'
 
-  describe DataMapper::Types::Fixtures::Bookmark do
+  describe DataMapper::TypesFixtures::Bookmark do
     supported_by :all do
       describe 'without URI' do
         before :all do
           @uri = nil
-          @resource = DataMapper::Types::Fixtures::Bookmark.new(
+          @resource = DataMapper::TypesFixtures::Bookmark.new(
             :title  => 'Check this out',
             :uri    => @uri,
             :shared => false,
@@ -20,7 +20,7 @@ try_spec do
         end
 
         it 'can be found by uri' do
-          DataMapper::Types::Fixtures::Bookmark.first(:uri => @uri).should == @resource
+          DataMapper::TypesFixtures::Bookmark.first(:uri => @uri).should == @resource
         end
 
         describe 'when reloaded' do
@@ -37,8 +37,8 @@ try_spec do
       describe 'with a blank URI' do
         before :all do
           @uri = ''
-          DataMapper::Types::Fixtures::Bookmark.auto_migrate!
-          @resource = DataMapper::Types::Fixtures::Bookmark.new(
+          DataMapper::TypesFixtures::Bookmark.auto_migrate!
+          @resource = DataMapper::TypesFixtures::Bookmark.new(
             :title  => 'Check this out',
             :uri    => @uri,
             :shared => false,
@@ -49,7 +49,7 @@ try_spec do
         end
 
         it 'can be found by uri' do
-          DataMapper::Types::Fixtures::Bookmark.first(:uri => @uri).should == @resource
+          DataMapper::TypesFixtures::Bookmark.first(:uri => @uri).should == @resource
         end
 
         describe 'when reloaded' do
@@ -70,7 +70,7 @@ try_spec do
       describe 'with invalid URI' do
         before :all do
           @uri = 'this is def. not URI'
-          @resource = DataMapper::Types::Fixtures::Bookmark.new(
+          @resource = DataMapper::TypesFixtures::Bookmark.new(
             :title  => 'Check this out',
             :uri    => @uri,
             :shared => false,
@@ -109,7 +109,7 @@ try_spec do
       ].each do |uri|
         describe "with URI set to '#{uri}'" do
           before :all do
-            @resource = DataMapper::Types::Fixtures::Bookmark.new(
+            @resource = DataMapper::TypesFixtures::Bookmark.new(
               :title  => 'Check this out',
               :uri    => uri,
               :shared => false,
@@ -120,7 +120,7 @@ try_spec do
           end
 
           it 'can be found by uri' do
-            DataMapper::Types::Fixtures::Bookmark.first(:uri => uri).should_not be_blank
+            DataMapper::TypesFixtures::Bookmark.first(:uri => uri).should_not be_blank
           end
 
           describe 'when reloaded' do

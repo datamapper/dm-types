@@ -7,7 +7,7 @@ try_spec do
 
   describe DataMapper::Property::Yaml do
     before :all do
-      @property = DataMapper::Types::Fixtures::Person.properties[:inventions]
+      @property = DataMapper::TypesFixtures::Person.properties[:inventions]
     end
 
     describe '.load' do

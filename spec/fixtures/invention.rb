@@ -1,9 +1,7 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
 
-      Invention = Struct.new(:name)
+    Invention = Struct.new(:name)
 
-    end
   end
 end

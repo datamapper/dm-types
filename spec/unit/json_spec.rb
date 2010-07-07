@@ -7,7 +7,7 @@ try_spec do
 
   describe DataMapper::Property::Json do
     before :all do
-      @property = DataMapper::Types::Fixtures::Person.properties[:positions]
+      @property = DataMapper::TypesFixtures::Person.properties[:positions]
     end
 
     describe '#valid?' do

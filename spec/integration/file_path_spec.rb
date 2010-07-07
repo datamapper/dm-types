@@ -4,12 +4,12 @@ try_spec do
 
   require './spec/fixtures/software_package'
 
-  describe DataMapper::Types::Fixtures::SoftwarePackage do
+  describe DataMapper::TypesFixtures::SoftwarePackage do
     supported_by :all do
       describe 'with source path at /var/cache/apt/archives/linux-libc-dev_2.6.28-11.40_i386.deb' do
         before :all do
           @source_path = '/var/cache/apt/archives/linux-libc-dev_2.6.28-11.40_i386.deb'
-          @resource    = DataMapper::Types::Fixtures::SoftwarePackage.new(:source_path => @source_path)
+          @resource    = DataMapper::TypesFixtures::SoftwarePackage.new(:source_path => @source_path)
         end
 
         describe 'when is a new record' do
@@ -49,7 +49,7 @@ try_spec do
       describe 'with destination path at /usr/local' do
         before :all do
           @destination_path = '/usr/local'
-          @resource         = DataMapper::Types::Fixtures::SoftwarePackage.new(:destination_path => @destination_path)
+          @resource         = DataMapper::TypesFixtures::SoftwarePackage.new(:destination_path => @destination_path)
         end
 
         describe 'when saved and reloaded' do
@@ -91,7 +91,7 @@ try_spec do
       describe 'with no (nil) source path' do
         before :all do
           @source_path = nil
-          @resource    = DataMapper::Types::Fixtures::SoftwarePackage.new(:source_path => @source_path)
+          @resource    = DataMapper::TypesFixtures::SoftwarePackage.new(:source_path => @source_path)
         end
 
         describe 'when saved and reloaded' do
@@ -109,7 +109,7 @@ try_spec do
       describe 'with a blank source path' do
         before :all do
           @source_path = ''
-          @resource    = DataMapper::Types::Fixtures::SoftwarePackage.new(:source_path => @source_path)
+          @resource    = DataMapper::TypesFixtures::SoftwarePackage.new(:source_path => @source_path)
         end
 
         describe 'when saved and reloaded' do
@@ -127,7 +127,7 @@ try_spec do
       describe 'with a source path assigned to an empty array' do
         before :all do
           @source_path = []
-          @resource    = DataMapper::Types::Fixtures::SoftwarePackage.new(:source_path => @source_path)
+          @resource    = DataMapper::TypesFixtures::SoftwarePackage.new(:source_path => @source_path)
         end
 
         describe 'when saved and reloaded' do
@@ -150,7 +150,7 @@ try_spec do
         describe 'when instantiated' do
           it 'raises an exception' do
             lambda do
-              DataMapper::Types::Fixtures::SoftwarePackage.new(:source_path => @source_path)
+              DataMapper::TypesFixtures::SoftwarePackage.new(:source_path => @source_path)
             end.should raise_error(TypeError)
           end
         end

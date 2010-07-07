@@ -5,7 +5,7 @@ try_spec do
 
   describe DataMapper::Property::UUID do
     before :all do
-      @property = DataMapper::Types::Fixtures::NetworkNode.properties[:node_uuid]
+      @property = DataMapper::TypesFixtures::NetworkNode.properties[:node_uuid]
       @input    = 'b0fc632e-d744-4821-afe3-4ea0701859ee'
       @uuid     = UUIDTools::UUID.random_create
     end

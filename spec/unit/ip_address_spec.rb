@@ -7,7 +7,7 @@ try_spec do
     before :all do
       @stored = '81.20.130.1'
       @input  = IPAddr.new(@stored)
-      @property = DataMapper::Types::Fixtures::NetworkNode.properties[:ip_address]
+      @property = DataMapper::TypesFixtures::NetworkNode.properties[:ip_address]
     end
 
     describe '#valid?' do

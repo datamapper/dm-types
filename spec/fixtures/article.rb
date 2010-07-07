@@ -1,37 +1,35 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
 
-      class Article
-        #
-        # Behaviors
-        #
+    class Article
+      #
+      # Behaviors
+      #
 
-        include ::DataMapper::Resource
+      include ::DataMapper::Resource
 
-        #
-        # Properties
-        #
+      #
+      # Properties
+      #
 
-        property :id,         Serial
+      property :id,         Serial
 
-        property :title,      String, :length => 255
-        property :body,       Text
+      property :title,      String, :length => 255
+      property :body,       Text
 
-        property :created_at,   DateTime
-        property :updated_at,   DateTime
-        property :published_at, DateTime
+      property :created_at,   DateTime
+      property :updated_at,   DateTime
+      property :published_at, DateTime
 
-        property :slug, Slug
+      property :slug, Slug
 
-        #
-        # Hooks
-        #
+      #
+      # Hooks
+      #
 
-        before :valid? do
-          self.slug = self.title
-        end
-      end # Article
-    end
+      before :valid? do
+        self.slug = self.title
+      end
+    end # Article
   end
 end

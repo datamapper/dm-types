@@ -1,38 +1,36 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
 
-      class NetworkNode
-        #
-        # Behaviors
-        #
+    class NetworkNode
+      #
+      # Behaviors
+      #
 
-        include ::DataMapper::Resource
+      include ::DataMapper::Resource
 
-        #
-        # Properties
-        #
+      #
+      # Properties
+      #
 
-        property :id,               Serial
-        property :ip_address,       IPAddress
-        property :cidr_subnet_bits, Integer
-        property :node_uuid,        UUID
+      property :id,               Serial
+      property :ip_address,       IPAddress
+      property :cidr_subnet_bits, Integer
+      property :node_uuid,        UUID
 
-        #
-        # API
-        #
+      #
+      # API
+      #
 
-        alias uuid  node_uuid
-        alias uuid= node_uuid=
+      alias uuid  node_uuid
+      alias uuid= node_uuid=
 
-        def runs_ipv6?
-          self.ip_address.ipv6?
-        end
+      def runs_ipv6?
+        self.ip_address.ipv6?
+      end
 
-        def runs_ipv4?
-          self.ip_address.ipv4?
-        end
-      end # NetworkNode
-    end # Fixtures
-  end # Types
+      def runs_ipv4?
+        self.ip_address.ipv4?
+      end
+    end # NetworkNode
+  end # TypesFixtures
 end # DataMapper

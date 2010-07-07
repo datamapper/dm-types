@@ -6,7 +6,7 @@ try_spec do
   describe DataMapper::Property::Flag do
     describe '.dump' do
       before :all do
-        @flag = DataMapper::Types::Fixtures::TShirt.property(
+        @flag = DataMapper::TypesFixtures::TShirt.property(
           :stuff, DataMapper::Property::Flag[:first, :second, :third, :fourth, :fifth])
       end
 
@@ -63,7 +63,7 @@ try_spec do
 
     describe '.load' do
       before :all do
-        @flag = DataMapper::Types::Fixtures::TShirt.property(:stuff, DataMapper::Property::Flag, :flags => [:uno, :dos, :tres, :cuatro, :cinco])
+        @flag = DataMapper::TypesFixtures::TShirt.property(:stuff, DataMapper::Property::Flag, :flags => [:uno, :dos, :tres, :cuatro, :cinco])
       end
 
       describe 'when argument matches a key in the flag map' do

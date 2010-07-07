@@ -6,12 +6,12 @@ try_spec do
 
   require './spec/fixtures/article'
 
-  describe DataMapper::Types::Fixtures::Article do
+  describe DataMapper::TypesFixtures::Article do
     supported_by :all do
       describe "persisted with title and slug set to 'New DataMapper Type'" do
         before :all do
           @input    = 'New DataMapper Type'
-          @resource = DataMapper::Types::Fixtures::Article.create(:title => @input, :slug => @input)
+          @resource = DataMapper::TypesFixtures::Article.create(:title => @input, :slug => @input)
 
           @resource.reload
         end
@@ -21,7 +21,7 @@ try_spec do
         end
 
         it 'can be found by slug' do
-          DataMapper::Types::Fixtures::Article.first(:slug => 'new-datamapper-type').should == @resource
+          DataMapper::TypesFixtures::Article.first(:slug => 'new-datamapper-type').should == @resource
         end
       end
 
@@ -38,7 +38,7 @@ try_spec do
       ].each do |title, slug|
         describe "set with title '#{title}'" do
           before :all do
-            @resource = DataMapper::Types::Fixtures::Article.new(:title => title)
+            @resource = DataMapper::TypesFixtures::Article.new(:title => title)
             @resource.valid?.should be(true)
           end
 
@@ -53,7 +53,7 @@ try_spec do
             end
 
             it 'can be found by slug' do
-              DataMapper::Types::Fixtures::Article.first(:slug => slug).should == @resource
+              DataMapper::TypesFixtures::Article.first(:slug => slug).should == @resource
             end
           end
         end

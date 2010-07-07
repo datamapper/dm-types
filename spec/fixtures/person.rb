@@ -1,27 +1,24 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
+    class Person
+      #
+      # Behaviors
+      #
 
-      class Person
-        #
-        # Behaviors
-        #
+      include DataMapper::Resource
 
-        include DataMapper::Resource
+      #
+      # Properties
+      #
 
-        #
-        # Properties
-        #
+      property :id,         Serial
+      property :name,       String
+      property :positions,  Json
+      property :inventions, Yaml
 
-        property :id,         Serial
-        property :name,       String
-        property :positions,  Json
-        property :inventions, Yaml
+      property :interests, CommaSeparatedList
 
-        property :interests, CommaSeparatedList
-
-        property :password, BCryptHash
-      end
+      property :password, BCryptHash
     end
   end
 end

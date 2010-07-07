@@ -4,10 +4,10 @@ try_spec do
 
   require './spec/fixtures/person'
 
-  describe DataMapper::Types::Fixtures::Person do
+  describe DataMapper::TypesFixtures::Person do
     supported_by :all do
       before :all do
-        @resource = DataMapper::Types::Fixtures::Person.new(:name => 'Thomas Edison')
+        @resource = DataMapper::TypesFixtures::Person.new(:name => 'Thomas Edison')
       end
 
       describe 'with no positions information' do

@@ -5,10 +5,10 @@ try_spec do
   require './spec/fixtures/person'
   require './spec/fixtures/invention'
 
-  describe DataMapper::Types::Fixtures::Person do
+  describe DataMapper::TypesFixtures::Person do
     supported_by :all do
       before :all do
-        @resource = DataMapper::Types::Fixtures::Person.new(:name => '')
+        @resource = DataMapper::TypesFixtures::Person.new(:name => '')
       end
 
       describe 'with no inventions information' do
@@ -31,7 +31,7 @@ try_spec do
       describe 'with a few items on the inventions list' do
         before :all do
           @input = [ 'carbon telephone transmitter', 'light bulb', 'electric grid' ].map do |name|
-            DataMapper::Types::Fixtures::Invention.new(name)
+            DataMapper::TypesFixtures::Invention.new(name)
           end
           @resource.inventions = @input
         end

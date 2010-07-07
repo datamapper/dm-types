@@ -1,25 +1,23 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
 
-      class Bookmark
-        #
-        # Behaviors
-        #
+    class Bookmark
+      #
+      # Behaviors
+      #
 
-        include ::DataMapper::Resource
+      include ::DataMapper::Resource
 
-        #
-        # Properties
-        #
+      #
+      # Properties
+      #
 
-        property :id, Serial
+      property :id, Serial
 
-        property :title,  String, :length => 255
-        property :shared, Boolean
-        property :uri,    URI
-        property :tags,   Yaml
-      end # Bookmark
-    end
+      property :title,  String, :length => 255
+      property :shared, Boolean
+      property :uri,    URI
+      property :tags,   Yaml
+    end # Bookmark
   end
 end

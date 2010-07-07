@@ -4,7 +4,7 @@ require './spec/fixtures/software_package'
 try_spec do
   describe DataMapper::Property::FilePath do
     before :all do
-      @property = DataMapper::Types::Fixtures::SoftwarePackage.properties[:source_path]
+      @property = DataMapper::TypesFixtures::SoftwarePackage.properties[:source_path]
     end
 
     before do

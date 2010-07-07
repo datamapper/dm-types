@@ -4,10 +4,10 @@ try_spec do
 
   require './spec/fixtures/tshirt'
 
-  describe DataMapper::Types::Fixtures::TShirt do
+  describe DataMapper::TypesFixtures::TShirt do
     supported_by :all do
       before do
-        @resource = DataMapper::Types::Fixtures::TShirt.new(
+        @resource = DataMapper::TypesFixtures::TShirt.new(
           :writing     => 'Fork you',
           :has_picture => true,
           :picture     => :octocat,
@@ -17,7 +17,7 @@ try_spec do
 
       describe 'with the default value' do
         it 'returns it as an array' do
-          @resource.size.should eql([DataMapper::Types::Fixtures::TShirt.properties[:size].default])
+          @resource.size.should eql([DataMapper::TypesFixtures::TShirt.properties[:size].default])
         end
       end
 

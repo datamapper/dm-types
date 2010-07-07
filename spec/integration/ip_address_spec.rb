@@ -14,10 +14,10 @@ try_spec do
 
   require './spec/fixtures/network_node'
 
-  describe DataMapper::Types::Fixtures::NetworkNode do
+  describe DataMapper::TypesFixtures::NetworkNode do
     supported_by :all do
       before :all do
-        @resource = DataMapper::Types::Fixtures::NetworkNode.new(
+        @resource = DataMapper::TypesFixtures::NetworkNode.new(
           :node_uuid        => '25a44800-21c9-11de-8c30-0800200c9a66',
           :ip_address       => nil,
           :cidr_subnet_bits => nil

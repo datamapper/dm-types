@@ -4,10 +4,10 @@ try_spec do
 
   require './spec/fixtures/person'
 
-  describe DataMapper::Types::Fixtures::Person do
+  describe DataMapper::TypesFixtures::Person do
     supported_by :all do
       before :all do
-        @resource = DataMapper::Types::Fixtures::Person.new(:name => '')
+        @resource = DataMapper::TypesFixtures::Person.new(:name => '')
       end
 
       describe 'with no interests information' do

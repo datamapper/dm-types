@@ -1,6 +1,5 @@
 module DataMapper
-  module Types
-    module Fixtures
+  module TypesFixtures
 
       class TShirt
         #
@@ -21,6 +20,5 @@ module DataMapper
         property :color, Enum[:white, :black, :red, :orange, :yellow, :green, :cyan, :blue, :purple]
         property :size,  Flag[:xs, :small, :medium, :large, :xl, :xxl], :default => :xs
       end # Shirt
-    end # Fixtures
-  end # Types
+    end # TypesFixtures
 end # DataMapper

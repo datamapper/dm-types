@@ -4,11 +4,11 @@ try_spec do
 
   require './spec/fixtures/ticket'
 
-  describe DataMapper::Types::Fixtures::Ticket do
+  describe DataMapper::TypesFixtures::Ticket do
     supported_by :all do
       describe 'that is dumped and then loaded' do
         before :all do
-          @resource = DataMapper::Types::Fixtures::Ticket.new(
+          @resource = DataMapper::TypesFixtures::Ticket.new(
             :title  => "Can't order by aggregated fields",
             :id     => 789,
             :body   => "I'm trying to use the aggregate method and sort the results by a summed field, but it doesn't work.",
@@ -26,7 +26,7 @@ try_spec do
 
       describe 'that is supplied a matching enumeration value' do
         before :all do
-          @resource = DataMapper::Types::Fixtures::Ticket.new(:status => :assigned)
+          @resource = DataMapper::TypesFixtures::Ticket.new(:status => :assigned)
         end
 
         it 'typecasts it for outside reader' do
@@ -36,7 +36,7 @@ try_spec do
 
       describe '#get' do
         before :all do
-          @resource = DataMapper::Types::Fixtures::Ticket.new(
+          @resource = DataMapper::TypesFixtures::Ticket.new(
             :title  => '"sudo make install" of drizzle fails because it tries to chown mysql',
             :id     => 257497,
             :body   => "Note that at the very least, there should be a check to see whether or not the user is created before chown'ing a file to the user.",
@@ -46,19 +46,19 @@ try_spec do
         end
 
         it 'supports queries with equality operator on enumeration property' do
-          DataMapper::Types::Fixtures::Ticket.all(:status => :confirmed).
+          DataMapper::TypesFixtures::Ticket.all(:status => :confirmed).
             should include(@resource)
         end
 
         it 'supports queries with inequality operator on enumeration property' do
-          DataMapper::Types::Fixtures::Ticket.all(:status.not => :confirmed).
+          DataMapper::TypesFixtures::Ticket.all(:status.not => :confirmed).
             should_not include(@resource)
         end
       end
 
       describe 'with value unknown to enumeration property' do
         before :all do
-          @resource = DataMapper::Types::Fixtures::Ticket.new(:status => :undecided)
+          @resource = DataMapper::TypesFixtures::Ticket.new(:status => :undecided)
         end
 
         # TODO: consider sharing shared spec exampels with dm-validations,

@@ -4,13 +4,13 @@ try_spec do
 
   require './spec/fixtures/person'
 
-  describe DataMapper::Types::Fixtures::Person do
+  describe DataMapper::TypesFixtures::Person do
     supported_by :all do
       before :all  do
-        @resource  = DataMapper::Types::Fixtures::Person.create(:password => 'DataMapper R0cks!')
-        DataMapper::Types::Fixtures::Person.create(:password => 'password1')
+        @resource  = DataMapper::TypesFixtures::Person.create(:password => 'DataMapper R0cks!')
+        DataMapper::TypesFixtures::Person.create(:password => 'password1')
 
-        @people = DataMapper::Types::Fixtures::Person.all
+        @people = DataMapper::TypesFixtures::Person.all
         @resource.reload
       end
 
