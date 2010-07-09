@@ -11,7 +11,7 @@ module DataMapper
         property_name = name.inspect
 
         model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          include Paranoid::Base
+          include DataMapper::Types::Paranoid::Base
 
           set_paranoid_property(#{property_name}) { true }
 
