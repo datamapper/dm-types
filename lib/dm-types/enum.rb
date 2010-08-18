@@ -1,17 +1,10 @@
 require 'dm-core'
+require 'dm-types/support/flags'
 
 module DataMapper
   class Property
     class Enum < Integer
-      accept_options :flags
-
-      attr_reader :flag_map
-
-      def self.[](*values)
-        klass = ::Class.new(self)
-        klass.flags(values)
-        klass
-      end
+      include Flags
 
       def initialize(model, name, options = {}, type = nil)
         super
@@ -31,10 +24,6 @@ module DataMapper
             end
           end
         end
-      end
-
-      def custom?
-        true
       end
 
       def load(value)

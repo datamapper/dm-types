@@ -7,7 +7,11 @@ try_spec do
         include DataMapper::Resource
         property :id, Serial
       end
+
+      @property_klass = DataMapper::Property::Enum
     end
+
+    it_should_behave_like "A property with flags"
 
     describe '.dump' do
       before do

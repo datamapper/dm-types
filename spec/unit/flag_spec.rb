@@ -8,7 +8,11 @@ try_spec do
       before :all do
         @flag = DataMapper::TypesFixtures::TShirt.property(
           :stuff, DataMapper::Property::Flag[:first, :second, :third, :fourth, :fifth])
+
+        @property_klass = DataMapper::Property::Flag
       end
+
+    it_should_behave_like "A property with flags"
 
       describe 'when argument matches a value in the flag map' do
         before :all do

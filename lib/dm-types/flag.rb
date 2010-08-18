@@ -1,17 +1,10 @@
 require 'dm-core'
+require 'dm-types/support/flags'
 
 module DataMapper
   class Property
     class Flag < Integer
-      accept_options :flags
-
-      attr_reader :flag_map
-
-      def self.[](*values)
-        klass = ::Class.new(self)
-        klass.flags(values)
-        klass
-      end
+      include Flags
 
       def initialize(model, name, options = {}, type = nil)
         super
@@ -22,10 +15,6 @@ module DataMapper
         flags.each_with_index do |flag, i|
           flag_map[i] = flag
         end
-      end
-
-      def custom?
-        true
       end
 
       def load(value)
