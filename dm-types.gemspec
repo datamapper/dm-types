@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-06-08}
+  s.date = %q{2010-08-29}
   s.description = %q{DataMapper plugin providing extra data types}
   s.email = %q{dan.kubb [a] gmail [d] com}
   s.extra_rdoc_files = [
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
      "lib/dm-types/paranoid_datetime.rb",
      "lib/dm-types/regexp.rb",
      "lib/dm-types/slug.rb",
+     "lib/dm-types/support/flags.rb",
      "lib/dm-types/uri.rb",
      "lib/dm-types/uuid.rb",
      "lib/dm-types/yaml.rb",
@@ -62,6 +63,7 @@ Gem::Specification.new do |s|
      "spec/integration/uuid_spec.rb",
      "spec/integration/yaml_spec.rb",
      "spec/rcov.opts",
+     "spec/shared/flags_shared_spec.rb",
      "spec/shared/identity_function_group.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
@@ -77,6 +79,7 @@ Gem::Specification.new do |s|
      "spec/unit/paranoid_datetime_spec.rb",
      "spec/unit/regexp_spec.rb",
      "spec/unit/uri_spec.rb",
+     "spec/unit/uuid_spec.rb",
      "spec/unit/yaml_spec.rb",
      "tasks/ci.rake",
      "tasks/local_gemfile.rake",
@@ -111,6 +114,7 @@ Gem::Specification.new do |s|
      "spec/integration/uri_spec.rb",
      "spec/integration/uuid_spec.rb",
      "spec/integration/yaml_spec.rb",
+     "spec/shared/flags_shared_spec.rb",
      "spec/shared/identity_function_group.rb",
      "spec/spec_helper.rb",
      "spec/unit/bcrypt_hash_spec.rb",
@@ -125,6 +129,7 @@ Gem::Specification.new do |s|
      "spec/unit/paranoid_datetime_spec.rb",
      "spec/unit/regexp_spec.rb",
      "spec/unit/uri_spec.rb",
+     "spec/unit/uuid_spec.rb",
      "spec/unit/yaml_spec.rb"
   ]
 
@@ -135,7 +140,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.0.0"])
       s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.3"])
-      s.add_runtime_dependency(%q<json_pure>, ["~> 1.4.3"])
+      s.add_runtime_dependency(%q<json_pure>, ["~> 1.4"])
       s.add_runtime_dependency(%q<uuidtools>, ["~> 2.1.1"])
       s.add_runtime_dependency(%q<stringex>, ["~> 1.1.0"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3"])
@@ -143,7 +148,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<dm-core>, ["~> 1.0.0"])
       s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
-      s.add_dependency(%q<json_pure>, ["~> 1.4.3"])
+      s.add_dependency(%q<json_pure>, ["~> 1.4"])
       s.add_dependency(%q<uuidtools>, ["~> 2.1.1"])
       s.add_dependency(%q<stringex>, ["~> 1.1.0"])
       s.add_dependency(%q<rspec>, ["~> 1.3"])
@@ -152,7 +157,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<dm-core>, ["~> 1.0.0"])
     s.add_dependency(%q<fastercsv>, ["~> 1.5.3"])
-    s.add_dependency(%q<json_pure>, ["~> 1.4.3"])
+    s.add_dependency(%q<json_pure>, ["~> 1.4"])
     s.add_dependency(%q<uuidtools>, ["~> 2.1.1"])
     s.add_dependency(%q<stringex>, ["~> 1.1.0"])
     s.add_dependency(%q<rspec>, ["~> 1.3"])
