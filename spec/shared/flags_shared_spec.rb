@@ -18,7 +18,7 @@ share_examples_for "A property with flags" do
       @property_klass.generated_classes[@flags].should_not be_nil
     end
   end
-  
+
   it "should include :flags in accepted_options" do
     @property_klass.accepted_options.should include(:flags)
   end
