@@ -10,7 +10,7 @@ share_examples_for "A property with flags" do
       include DataMapper::Resource
     end
 
-    @property = User.property :item, @property_klass[@flags]
+    @property = User.property :item, @property_klass[@flags], :key => true
   end
 
   describe ".generated_classes" do
