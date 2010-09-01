@@ -3,7 +3,7 @@ require 'spec_helper'
 try_spec do
   describe DataMapper::Property::EpochTime do
     before :all do
-      class User
+      class ::User
         include DataMapper::Resource
         property :id, Serial
         property :bday, EpochTime

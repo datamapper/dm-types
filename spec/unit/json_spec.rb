@@ -83,7 +83,7 @@ try_spec do
     end
 
     describe '.typecast' do
-      class SerializeMe
+      class ::SerializeMe
         attr_accessor :name
       end
 

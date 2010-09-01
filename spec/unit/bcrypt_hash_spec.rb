@@ -8,13 +8,13 @@ try_spec do
 
       @nonstandard_type = 1
 
-      class TestType
+      class ::TestType
         @a = 1
         @b = 'Hi There'
       end
       @nonstandard_type2 = TestType.new
 
-      class User
+      class ::User
         include DataMapper::Resource
         property :id, Serial
         property :password, BCryptHash

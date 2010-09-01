@@ -4,7 +4,7 @@ try_spec do
   describe DataMapper::Property::Csv do
     supported_by :all do
       before :all do
-        class User
+        class ::User
           include DataMapper::Resource
           property :id, Serial
           property :things, Csv
