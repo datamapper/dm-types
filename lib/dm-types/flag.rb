@@ -35,7 +35,7 @@ module DataMapper
 
       def dump(value)
         return if value.nil?
-        flags = Array(value).map { |flag| flag.to_sym }.flatten
+        flags = Array(value).map { |flag| flag.to_sym }.flatten.uniq
         flag_map.invert.values_at(*flags).compact.inject(0) { |sum, i| sum += 1 << i }
       end
 
