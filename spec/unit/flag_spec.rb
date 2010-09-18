@@ -68,6 +68,7 @@ try_spec do
         before :all do
           @result = @flag.dump([ :second, :fourth, :second ])
         end
+
         it 'behaves the same as if there were no duplicates' do
           @result.should == @flag.dump([ :second, :fourth ])
         end
