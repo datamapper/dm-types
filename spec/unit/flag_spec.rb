@@ -63,6 +63,15 @@ try_spec do
           @result.should == 0
         end
       end
+
+      describe 'when argument contains duplicate flags' do
+        before :all do
+          @result = @flag.dump([ :second, :fourth, :second ])
+        end
+        it 'behaves the same as if there were no duplicates' do
+          @result.should == @flag.dump([ :second, :fourth ])
+        end
+      end
     end
 
     describe '.load' do
