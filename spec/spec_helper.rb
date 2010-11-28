@@ -5,7 +5,7 @@ require 'dm-types'
 require 'dm-migrations'
 require 'dm-validations'
 
-Dir["#{Pathname(__FILE__).dirname.expand_path}/shared/*"].each { |file| require file }
+Dir["#{Pathname(__FILE__).dirname.expand_path}/shared/*.rb"].each { |file| require file }
 
 DataMapper::Spec.setup
 
