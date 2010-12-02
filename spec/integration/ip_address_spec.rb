@@ -1,12 +1,14 @@
 require 'spec_helper'
 
-module IPAddressMatchers
-  def run_ipv6
-    simple_matcher('run IPv6') { |model| model.runs_ipv6? }
+Spec::Matchers.define :run_ipv4 do |model|
+  match do |model|
+    model.runs_ipv4?
   end
+end
 
-  def run_ipv4
-    simple_matcher('run IPv4') { |model| model.runs_ipv4? }
+Spec::Matchers.define :run_ipv6 do |model|
+  match do |model|
+    model.runs_ipv6?
   end
 end
 
@@ -23,8 +25,6 @@ try_spec do
           :cidr_subnet_bits => nil
         )
       end
-
-      include IPAddressMatchers
 
       describe 'with IP address fe80::ab8:e8ff:fed7:f8c9' do
         before :all do
