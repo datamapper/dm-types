@@ -20,8 +20,6 @@ DEPENDENCIES = {
 def try_spec
   begin
     yield
-  rescue NameError
-    # do nothing
   rescue LoadError => error
     raise error unless lib = error.message.match(/\Ano such file to load -- (.+)\z/)[1]
 
