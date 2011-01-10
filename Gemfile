@@ -20,7 +20,7 @@ group :runtime do # Runtime dependencies (as in the gemspec)
   gem 'json_pure',       '~> 1.4.3'
   gem 'uuidtools',       '~> 2.1.1'
   gem 'stringex',        '~> 1.1.0'
-  gem 'bcrypt-ruby',     '~> 2.1.2'
+  gem 'bcrypt-ruby',     '~> 2.1.4'
 
 end
 
