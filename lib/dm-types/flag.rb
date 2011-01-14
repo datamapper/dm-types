@@ -6,7 +6,7 @@ module DataMapper
     class Flag < Integer
       include Flags
 
-      def initialize(model, name, options = {}, type = nil)
+      def initialize(model, name, options = {})
         super
 
         @flag_map = {}
