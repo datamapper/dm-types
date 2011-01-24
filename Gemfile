@@ -15,12 +15,12 @@ group :runtime do # Runtime dependencies (as in the gemspec)
     gem 'activesupport', '~> 3.0.3', :require => nil
   end
 
-  gem 'dm-core',         DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}"
-  gem 'fastercsv',       '~> 1.5.3'
-  gem 'json_pure',       '~> 1.4.3'
-  gem 'uuidtools',       '~> 2.1.1'
-  gem 'stringex',        '~> 1.1.0'
-  gem 'bcrypt-ruby',     '~> 2.1.4'
+  gem 'dm-core',     DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}"
+  gem 'fastercsv',   '~> 1.5.3'
+  gem 'json',        '~> 1.4.6'
+  gem 'uuidtools',   '~> 2.1.1'
+  gem 'stringex',    '~> 1.1.0'
+  gem 'bcrypt-ruby', '~> 2.1.4'
 
 end
 
