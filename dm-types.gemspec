@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-26}
+  s.date = %q{2011-01-26}
   s.description = %q{DataMapper plugin providing extra data types}
   s.email = %q{dan.kubb [a] gmail [d] com}
   s.extra_rdoc_files = [
@@ -93,42 +93,42 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{DataMapper plugin providing extra data types}
   s.test_files = [
-    "spec/fixtures/article.rb",
-     "spec/fixtures/bookmark.rb",
-     "spec/fixtures/invention.rb",
-     "spec/fixtures/network_node.rb",
-     "spec/fixtures/person.rb",
-     "spec/fixtures/software_package.rb",
-     "spec/fixtures/ticket.rb",
-     "spec/fixtures/tshirt.rb",
-     "spec/integration/bcrypt_hash_spec.rb",
+    "spec/integration/file_path_spec.rb",
      "spec/integration/comma_separated_list_spec.rb",
-     "spec/integration/enum_spec.rb",
-     "spec/integration/file_path_spec.rb",
-     "spec/integration/flag_spec.rb",
-     "spec/integration/ip_address_spec.rb",
-     "spec/integration/json_spec.rb",
-     "spec/integration/slug_spec.rb",
-     "spec/integration/uri_spec.rb",
-     "spec/integration/uuid_spec.rb",
      "spec/integration/yaml_spec.rb",
-     "spec/shared/flags_shared_spec.rb",
+     "spec/integration/json_spec.rb",
+     "spec/integration/ip_address_spec.rb",
+     "spec/integration/uri_spec.rb",
+     "spec/integration/bcrypt_hash_spec.rb",
+     "spec/integration/slug_spec.rb",
+     "spec/integration/enum_spec.rb",
+     "spec/integration/flag_spec.rb",
+     "spec/integration/uuid_spec.rb",
      "spec/shared/identity_function_group.rb",
+     "spec/shared/flags_shared_spec.rb",
+     "spec/fixtures/bookmark.rb",
+     "spec/fixtures/software_package.rb",
+     "spec/fixtures/tshirt.rb",
+     "spec/fixtures/person.rb",
+     "spec/fixtures/invention.rb",
+     "spec/fixtures/ticket.rb",
+     "spec/fixtures/article.rb",
+     "spec/fixtures/network_node.rb",
      "spec/spec_helper.rb",
-     "spec/unit/bcrypt_hash_spec.rb",
      "spec/unit/csv_spec.rb",
-     "spec/unit/enum_spec.rb",
      "spec/unit/epoch_time_spec.rb",
      "spec/unit/file_path_spec.rb",
-     "spec/unit/flag_spec.rb",
-     "spec/unit/ip_address_spec.rb",
-     "spec/unit/json_spec.rb",
+     "spec/unit/yaml_spec.rb",
      "spec/unit/paranoid_boolean_spec.rb",
+     "spec/unit/json_spec.rb",
      "spec/unit/paranoid_datetime_spec.rb",
      "spec/unit/regexp_spec.rb",
+     "spec/unit/ip_address_spec.rb",
      "spec/unit/uri_spec.rb",
-     "spec/unit/uuid_spec.rb",
-     "spec/unit/yaml_spec.rb"
+     "spec/unit/bcrypt_hash_spec.rb",
+     "spec/unit/enum_spec.rb",
+     "spec/unit/flag_spec.rb",
+     "spec/unit/uuid_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
