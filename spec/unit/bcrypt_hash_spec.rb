@@ -35,7 +35,7 @@ try_spec do
         end
 
         it 'returns a string that is 60 characters long' do
-          @result.should have(60).characters
+          @result.size.should == 60
         end
       end
 
