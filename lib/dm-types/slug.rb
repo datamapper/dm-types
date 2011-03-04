@@ -10,9 +10,9 @@ module DataMapper
       length 2000
 
       def typecast(value)
-        return if value.nil?
-
-        if value.respond_to?(:to_str)
+        if value.nil?
+          nil
+        elsif value.respond_to?(:to_str)
           escape(value.to_str)
         else
           raise ArgumentError, '+value+ must be nil or respond to #to_str'
