@@ -15,16 +15,11 @@ module DataMapper
       end
 
       def load(value)
-        if DataMapper::Ext.blank?(value)
-          nil
-        else
-          Pathname.new(value)
-        end
+        Pathname.new(value) unless DataMapper::Ext.blank?(value)
       end
 
       def dump(value)
-        return nil if DataMapper::Ext.blank?(value)
-        value.to_s
+        value.to_s unless DataMapper::Ext.blank?(value)
       end
 
       def typecast_to_primitive(value)
