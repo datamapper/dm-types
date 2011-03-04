@@ -10,27 +10,26 @@ end
 module DataMapper
   class Property
     class Csv < Text
+
       def primitive?(value)
         super || value.kind_of?(::Array)
       end
 
       def load(value)
         case value
-          when ::String then CSV.parse(value)
-          when ::Array  then value
-          else
-            nil
+        when ::String then CSV.parse(value)
+        when ::Array  then value
         end
       end
 
       def dump(value)
         case value
-          when ::Array  then CSV.generate { |csv| value.each { |row| csv << row } }
+          when ::Array
+            CSV.generate { |csv| value.each { |row| csv << row } }
           when ::String then value
-          else
-            nil
         end
       end
+
     end # class Csv
   end # class Property
 end # module DataMapper
