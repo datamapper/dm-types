@@ -17,18 +17,19 @@ module DataMapper
       def load(value)
         if value.nil?
           nil
-        elsif value.is_a?(::String) && !value.empty?
-          IPAddr.new(value)
-        elsif value.is_a?(::String) && value.empty?
-          IPAddr.new("0.0.0.0")
+        elsif value.is_a?(::String)
+          unless value.empty?
+            IPAddr.new(value)
+          else
+            IPAddr.new("0.0.0.0")
+          end
         else
           raise ArgumentError.new("+value+ must be nil or a String")
         end
       end
 
       def dump(value)
-        return nil if value.nil?
-        value.to_s
+        value.to_s unless value.nil?
       end
 
       def typecast_to_primitive(value)
