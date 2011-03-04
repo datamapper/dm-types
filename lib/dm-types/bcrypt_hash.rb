@@ -11,9 +11,7 @@ module DataMapper
       end
 
       def load(value)
-        if value.nil?
-          nil
-        else
+        unless value.nil?
           begin
             primitive?(value) ? value : BCrypt::Password.new(value)
           rescue BCrypt::Errors::InvalidHash
