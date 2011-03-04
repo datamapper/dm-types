@@ -21,7 +21,7 @@ module DataMapper
       def dump(value)
         if value.nil?
           nil
-        elsif value.is_a?(::String) && value =~ /^---/
+        elsif (value.is_a?(::String) && value =~ /^---/)
           value
         else
           ::YAML.dump(value)
