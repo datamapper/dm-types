@@ -4,6 +4,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class URI < String
+
       # Maximum length chosen based on recommendation:
       # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-an-url
       length 2000
@@ -31,6 +32,7 @@ module DataMapper
       def typecast_to_primitive(value)
         load(value)
       end
+
     end # class URI
   end # class Property
 end # module DataMapper

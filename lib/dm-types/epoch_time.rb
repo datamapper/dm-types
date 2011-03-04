@@ -10,6 +10,7 @@ end
 module DataMapper
   class Property
     class EpochTime < Integer
+
       def load(value)
         if value.kind_of?(::Integer)
           ::Time.at(value)
@@ -24,6 +25,7 @@ module DataMapper
           when ::DateTime        then value.to_time.to_i
         end
       end
+
     end # class EpochTime
   end # class Property
 end # module DataMapper

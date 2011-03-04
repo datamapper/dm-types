@@ -4,6 +4,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class IPAddress < String
+
       length 39
 
       def primitive?(value)
@@ -35,6 +36,7 @@ module DataMapper
       def typecast_to_primitive(value)
         load(value)
       end
+
     end # class IPAddress
   end # module Property
 end # module DataMapper

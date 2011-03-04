@@ -4,6 +4,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class Yaml < Text
+
       def custom?
         true
       end
@@ -31,6 +32,7 @@ module DataMapper
       def typecast(value)
         value
       end
+
     end # class Yaml
   end # class Property
 end # module DataMapper

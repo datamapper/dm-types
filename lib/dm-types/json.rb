@@ -42,5 +42,6 @@ module DataMapper
     end # class Json
 
     JSON = Json
+
   end # class Property
 end # module DataMapper

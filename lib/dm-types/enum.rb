@@ -4,6 +4,7 @@ require 'dm-types/support/flags'
 module DataMapper
   class Property
     class Enum < Integer
+
       include Flags
 
       def initialize(model, name, options = {})
@@ -46,6 +47,7 @@ module DataMapper
         else               value
         end
       end
+
     end # class Enum
   end # class Property
 end # module DataMapper

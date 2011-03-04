@@ -3,6 +3,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class Regexp < String
+
       def load(value)
         ::Regexp.new(value) unless value.nil?
       end
@@ -14,6 +15,7 @@ module DataMapper
       def typecast(value)
         load(value)
       end
+
     end
   end
 end
