@@ -39,6 +39,7 @@ module DataMapper
     #  -- benburkert Nov 15, 08
     #
     class UUID < String
+
       length 36
 
       # We need to override this method otherwise typecast_to_primitive won't be called.
@@ -67,6 +68,7 @@ module DataMapper
       def typecast_to_primitive(value)
         load(value)
       end
+
     end
   end
 end

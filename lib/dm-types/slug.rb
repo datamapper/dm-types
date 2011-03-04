@@ -4,6 +4,7 @@ require 'stringex'
 module DataMapper
   class Property
     class Slug < String
+
       # Maximum length chosen because URI type is limited to 2000
       # characters, and a slug is a component of a URI, so it should
       # not exceed the maximum URI length either.
@@ -22,6 +23,7 @@ module DataMapper
       def escape(string)
         string.to_url
       end
+
     end # class Slug
   end # class Property
 end # module DataMapper

@@ -4,6 +4,7 @@ require 'bcrypt'
 module DataMapper
   class Property
     class BCryptHash < String
+
       length 60
 
       def primitive?(value)
@@ -27,6 +28,7 @@ module DataMapper
       def typecast_to_primitive(value)
         load(value)
       end
+
     end # class BCryptHash
   end # class Property
 end # module DataMapper

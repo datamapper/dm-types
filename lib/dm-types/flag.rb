@@ -4,6 +4,7 @@ require 'dm-types/support/flags'
 module DataMapper
   class Property
     class Flag < Integer
+
       include Flags
 
       def initialize(model, name, options = {})
@@ -56,6 +57,7 @@ module DataMapper
           else [value.to_sym]
         end
       end
+
     end # class Flag
   end # class Property
 end # module DataMapper

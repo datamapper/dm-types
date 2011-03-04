@@ -4,6 +4,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class FilePath < String
+
       length 255
 
       def primitive?(value)
@@ -25,6 +26,7 @@ module DataMapper
       def typecast_to_primitive(value)
         load(value)
       end
+
     end # class FilePath
   end # class Property
 end # module DataMapper

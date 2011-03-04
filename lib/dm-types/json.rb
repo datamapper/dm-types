@@ -4,6 +4,7 @@ require 'json' unless defined? JSON
 module DataMapper
   class Property
     class Json < Text
+
       def custom?
         true
       end
@@ -37,7 +38,10 @@ module DataMapper
       def typecast_to_primitive(value)
         ::JSON.load(value.to_s)
       end
+
     end # class Json
+
     JSON = Json
+
   end # class Property
 end # module DataMapper

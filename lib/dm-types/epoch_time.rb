@@ -3,6 +3,7 @@ require 'dm-core'
 module DataMapper
   class Property
     class EpochTime < Integer
+
       def load(value)
         if value.kind_of?(::Integer)
           ::Time.at(value)
@@ -19,6 +20,7 @@ module DataMapper
       end
 
     private
+
       def datetime_to_time(datetime)
         d = datetime
         d.offset == 0 ? utc_time_with_fallback(d.year, d.month, d.day, d.hour, d.min, d.sec) : d
@@ -36,6 +38,7 @@ module DataMapper
       rescue
         ::DateTime.civil(year, month, day, hour, min, sec, 0)
       end
+
     end # class EpochTime
   end # class Property
 end # module DataMapper
