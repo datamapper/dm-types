@@ -80,10 +80,6 @@ try_spec do
           it 'has blank entries removed' do
             @resource.interests.any? { |i| DataMapper::Ext.blank?(i) }.should be(false)
           end
-
-          it 'has duplicates removed' do
-            @resource.interests.select { |i| i == 'fire' }.size.should == 1
-          end
         end
       end
     end
