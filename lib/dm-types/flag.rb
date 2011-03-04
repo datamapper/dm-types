@@ -34,15 +34,25 @@ module DataMapper
       end
 
       def dump(value)
-        return if value.nil?
-        flags = Array(value).map { |flag| flag.to_sym }.flatten.uniq
-        flag_map.invert.values_at(*flags).compact.inject(0) { |sum, i| sum += 1 << i }
+        unless value.nil?
+          flags = Array(value).map { |flag| flag.to_sym }
+          flags.uniq!
+
+          flag = 0
+
+          flag_map.invert.values_at(*flags).each do |i|
+            next if i.nil?
+            flag += (1 << i)
+          end
+
+          flag
+        end
       end
 
       def typecast(value)
         case value
-          when nil   then nil
-          when ::Array then value.map {|v| v.to_sym}
+          when nil     then nil
+          when ::Array then value.map { |v| v.to_sym }
           else [value.to_sym]
         end
       end
