@@ -13,7 +13,7 @@ module DataMapper
           v = (value || "").split(",").
             compact.
             map { |i| i.downcase.strip }.
-            reject { |i| i.blank? }.
+            reject { |i| i !~ /\S/ }.
             uniq
           super(v)
         else

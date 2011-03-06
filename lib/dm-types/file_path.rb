@@ -15,7 +15,7 @@ module DataMapper
       end
 
       def load(value)
-        if value.blank?
+        if DataMapper::Ext.blank?(value)
           nil
         else
           Pathname.new(value)
@@ -23,7 +23,7 @@ module DataMapper
       end
 
       def dump(value)
-        return nil if value.blank?
+        return nil if DataMapper::Ext.blank?(value)
         value.to_s
       end
 

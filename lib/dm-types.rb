@@ -1,11 +1,5 @@
 require 'dm-core'
 
-begin
-  require 'active_support/core_ext/date_time/conversions'
-rescue LoadError
-  require 'extlib/datetime'
-end
-
 module DataMapper
   class Property
     autoload :CommaSeparatedList, 'dm-types/comma_separated_list'
