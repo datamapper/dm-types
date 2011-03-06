@@ -120,7 +120,7 @@ try_spec do
           end
 
           it 'can be found by uri' do
-            DataMapper::TypesFixtures::Bookmark.first(:uri => uri).should_not be_blank
+            DataMapper::TypesFixtures::Bookmark.first(:uri => uri).should_not be_nil
           end
 
           describe 'when reloaded' do

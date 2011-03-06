@@ -64,7 +64,7 @@ try_spec do
         end
 
         it 'has no errors' do
-          @resource.errors.should be_blank
+          @resource.errors.should be_empty
         end
       end
     end

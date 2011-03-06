@@ -78,7 +78,7 @@ try_spec do
           end
 
           it 'has blank entries removed' do
-            @resource.interests.any? { |i| i.blank? }.should be(false)
+            @resource.interests.any? { |i| DataMapper::Ext.blank?(i) }.should be(false)
           end
 
           it 'has duplicates removed' do
