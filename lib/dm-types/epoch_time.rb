@@ -1,5 +1,4 @@
 require 'dm-core'
-require 'dm-core/ext/date_time'
 
 module DataMapper
   class Property
