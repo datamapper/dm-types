@@ -1,73 +1,58 @@
 require 'spec_helper'
 
-try_spec do
-  describe DataMapper::Property::EpochTime do
-    before :all do
-      class ::User
-        include DataMapper::Resource
-        property :id, Serial
-        property :bday, EpochTime
-      end
+describe DataMapper::Property::EpochTime do
+  before :all do
+    class ::User
+      include DataMapper::Resource
 
-      @property = User.properties[:bday]
+      property :id,   Serial
+      property :bday, EpochTime
     end
 
-    describe '.dump' do
-      describe 'when given Time instance' do
-        before :all do
-          @input = Time.now
-        end
+    @property = User.properties[:bday]
+  end
 
-        it 'returns timestamp' do
-          @property.dump(@input).should == @input.to_i
-        end
-      end
+  describe '#dump' do
+    subject { @property.dump(value) }
 
-      describe 'when given DateTime instance' do
-        before :all do
-          @input = DateTime.now
-        end
+    describe 'with a Time instance' do
+      let(:value) { Time.now }
 
-        it 'returns timestamp' do
-          pending 'Does not work with < 1.8.7, see if backports fixes it' if RUBY_VERSION < '1.8.7'
-          @property.dump(@input).should == Time.parse(@input.to_s).to_i
-        end
-      end
-
-      describe 'when given an integer' do
-        before :all do
-          @input = Time.now.to_i
-        end
-
-        it 'returns value as is' do
-          @property.dump(@input).should == @input
-        end
-      end
-
-      describe 'when given nil' do
-        before :all do
-          @input = nil
-        end
-
-        it 'returns value as is' do
-          @property.dump(@input).should == @input
-        end
-      end
+      it { should == value.to_i }
     end
 
-    describe '.load' do
-      describe 'when value is nil' do
-        it 'returns nil' do
-          @property.load(nil).should == nil
-        end
-      end
+    describe 'with a DateTime instance' do
+      let(:value) { DateTime.now }
 
-      describe 'when value is an integer' do
-        it 'returns time object from timestamp' do
-          t = Time.now.to_i
-          @property.load(Time.now.to_i).should == Time.at(t)
-        end
-      end
+      it { should == Time.parse(value.to_s).to_i }
+    end
+
+    describe 'with a number' do
+      let(:value) { Time.now.to_i }
+
+      it { should == value }
+    end
+
+    describe 'with nil' do
+      let(:value) { nil }
+
+      it { should == value }
+    end
+  end
+
+  describe '#load' do
+    subject { @property.load(value) }
+
+    describe 'with a number' do
+      let(:value) { Time.now.to_i }
+
+      it { should == Time.at(value) }
+    end
+
+    describe 'with nil' do
+      let(:value) { nil }
+
+      it { should == value }
     end
   end
 end
