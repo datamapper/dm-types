@@ -5,7 +5,7 @@ module DataMapper
   class Property
     class FilePath < String
 
-      length 255
+      length 260
 
       def primitive?(value)
         value.kind_of?(Pathname)
