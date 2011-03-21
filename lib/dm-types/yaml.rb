@@ -15,7 +15,7 @@ module DataMapper
         elsif value.is_a?(::String)
           ::YAML.load(value)
         else
-          raise ArgumentError.new("+value+ of a property of YAML type must be nil or a String")
+          raise ArgumentError, '+value+ of a property of YAML type must be nil or a String'
         end
       end
 
