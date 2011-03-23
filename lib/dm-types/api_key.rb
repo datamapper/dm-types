@@ -10,6 +10,7 @@ module DataMapper
       PADDING = 256
 
       length 40
+      unique true
       default proc { APIKey.generate }
 
       #
