@@ -5,7 +5,7 @@ try_spec do
 
   describe DataMapper::TypesFixtures::APIUser do
     supported_by :all do
-      subject { DataMapper::TypesFixtures::APIUser.new(:name => 'alice') }
+      subject { described_class.new(:name => 'alice') }
 
       let(:original_api_key) { subject.api_key }
 
@@ -18,7 +18,7 @@ try_spec do
       end
 
       it "should generate unique API Keys for each resource" do
-        other_resource = DataMapper::TypesFixtures::APIUser.new(:name => 'eve')
+        other_resource = described_class.new(:name => 'eve')
 
         other_resource.api_key.should_not == original_api_key
       end
