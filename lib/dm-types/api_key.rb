@@ -10,7 +10,7 @@ module DataMapper
       PADDING = 256
 
       length 40
-      default lambda { |model,property| APIKey.generate }
+      default proc { APIKey.generate }
 
       #
       # Generates a new API Key.
