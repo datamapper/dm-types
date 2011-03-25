@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2011-03-16}
+  s.date = %q{2011-03-25}
   s.description = %q{DataMapper plugin providing extra data types}
   s.email = %q{dan.kubb [a] gmail [d] com}
   s.extra_rdoc_files = [
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "dm-types.gemspec",
     "lib/dm-types.rb",
+    "lib/dm-types/api_key.rb",
     "lib/dm-types/bcrypt_hash.rb",
     "lib/dm-types/comma_separated_list.rb",
     "lib/dm-types/csv.rb",
@@ -42,6 +43,7 @@ Gem::Specification.new do |s|
     "lib/dm-types/uri.rb",
     "lib/dm-types/uuid.rb",
     "lib/dm-types/yaml.rb",
+    "spec/fixtures/api_user.rb",
     "spec/fixtures/article.rb",
     "spec/fixtures/bookmark.rb",
     "spec/fixtures/invention.rb",
@@ -50,6 +52,7 @@ Gem::Specification.new do |s|
     "spec/fixtures/software_package.rb",
     "spec/fixtures/ticket.rb",
     "spec/fixtures/tshirt.rb",
+    "spec/integration/api_key_spec.rb",
     "spec/integration/bcrypt_hash_spec.rb",
     "spec/integration/comma_separated_list_spec.rb",
     "spec/integration/enum_spec.rb",
@@ -90,6 +93,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.6.2}
   s.summary = %q{DataMapper plugin providing extra data types}
   s.test_files = [
+    "spec/fixtures/api_user.rb",
     "spec/fixtures/article.rb",
     "spec/fixtures/bookmark.rb",
     "spec/fixtures/invention.rb",
@@ -98,6 +102,7 @@ Gem::Specification.new do |s|
     "spec/fixtures/software_package.rb",
     "spec/fixtures/ticket.rb",
     "spec/fixtures/tshirt.rb",
+    "spec/integration/api_key_spec.rb",
     "spec/integration/bcrypt_hash_spec.rb",
     "spec/integration/comma_separated_list_spec.rb",
     "spec/integration/enum_spec.rb",
