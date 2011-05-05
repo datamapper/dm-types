@@ -15,6 +15,7 @@ module DataMapper
     autoload :ParanoidBoolean,    'dm-types/paranoid_boolean'
     autoload :ParanoidDateTime,   'dm-types/paranoid_datetime'
     autoload :Slug,               'dm-types/slug'
+    autoload :StringEnum,         'dm-types/string_enum'
     autoload :UUID,               'dm-types/uuid'
     autoload :URI,                'dm-types/uri'
     autoload :Yaml,               'dm-types/yaml'
