@@ -45,7 +45,7 @@ module DataMapper
 
         # @api private
         def paranoid_properties
-          @paranoid_properties
+          @paranoid_properties || base_model.paranoid_properties
         end
 
         # @api private
