@@ -16,6 +16,8 @@ describe DataMapper::Property::ParanoidDateTime do
       end
 
       class Article < Draft; end
+
+      class Review < Article; end
     end
 
     @model = Blog::Article
