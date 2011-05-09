@@ -14,6 +14,9 @@ describe DataMapper::Property::ParanoidBoolean do
 
         def before_destroy; end
       end
+
+      class Review < Article
+      end
     end
 
     @model = Blog::Article
@@ -132,6 +135,13 @@ describe DataMapper::Property::ParanoidBoolean do
         it 'should return a collection scoped to return all resources' do
           subject.map { |resource| resource.key }.should == [ @resource.key ]
         end
+      end
+    end
+
+    describe 'Model.inherited' do
+      it 'sets @paranoid_properties' do
+        ::Blog::Review.instance_variable_get(:@paranoid_properties).should ==
+          ::Blog::Article.instance_variable_get(:@paranoid_properties)
       end
     end
   end
