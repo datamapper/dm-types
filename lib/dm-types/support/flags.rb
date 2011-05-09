@@ -18,7 +18,8 @@ module DataMapper
         end
 
         module ClassMethods
-          # TODO: document
+          # Generate a new anonymous subclass configured to accept the given
+          #   values as flag values. Any values not in this list will be rejected
           # @api public
           def [](*values)
             if klass = generated_classes[values.flatten]
