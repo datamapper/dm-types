@@ -2,18 +2,9 @@ module DataMapper
   module Types
     module Paranoid
       module Base
-        extend Chainable
-
         def self.included(model)
           model.extend ClassMethods
           model.instance_variable_set(:@paranoid_properties, {})
-        end
-
-        chainable do
-          def inherited(model)
-            model.instance_variable_set(:@paranoid_properties, @paranoid_properties.dup)
-            super
-          end
         end
 
         def paranoid_destroy
@@ -25,7 +16,7 @@ module DataMapper
           true
         end
 
-        private
+      private
 
         # @api private
         def _destroy(execute_hooks = true)
@@ -39,6 +30,12 @@ module DataMapper
       end # module Base
 
       module ClassMethods
+        def inherited(model)
+          model.instance_variable_set(:@paranoid_properties, @paranoid_properties.dup)
+          super
+        end
+
+        # @api public
         def with_deleted
           with_exclusive_scope({}) { block_given? ? yield : all }
         end
