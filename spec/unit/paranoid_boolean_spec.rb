@@ -137,5 +137,12 @@ describe DataMapper::Property::ParanoidBoolean do
         end
       end
     end
+
+    describe 'Model.inherited' do
+      it 'sets @paranoid_properties' do
+        ::Blog::Review.instance_variable_get(:@paranoid_properties).should ==
+          ::Blog::Article.instance_variable_get(:@paranoid_properties)
+      end
+    end
   end
 end
