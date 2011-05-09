@@ -12,13 +12,15 @@ module DataMapper
       end
 
       def load(value)
-        unless value.nil?
-          begin
-            primitive?(value) ? value : BCrypt::Password.new(value)
-          rescue BCrypt::Errors::InvalidHash
-            BCrypt::Password.create(value, :cost => BCrypt::Engine::DEFAULT_COST)
-          end
+        if value.nil?
+          nil
+        elsif primitive?(value)
+          value
+        else
+          BCrypt::Password.new(value)
         end
+      rescue BCrypt::Errors::InvalidHash
+        BCrypt::Password.create(value, :cost => BCrypt::Engine::DEFAULT_COST)
       end
 
       def dump(value)
