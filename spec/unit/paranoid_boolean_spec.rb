@@ -3,8 +3,9 @@ require 'spec_helper'
 describe DataMapper::Property::ParanoidBoolean do
   before :all do
     Object.send(:remove_const, :Blog) if defined?(Blog)
+
     module ::Blog
-      class Article
+      class Draft
         include DataMapper::Resource
 
         property :id,      Serial
@@ -14,6 +15,8 @@ describe DataMapper::Property::ParanoidBoolean do
 
         def before_destroy; end
       end
+
+      class Article < Draft; end
     end
 
     @model = Blog::Article
