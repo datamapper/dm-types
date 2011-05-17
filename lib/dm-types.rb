@@ -12,22 +12,27 @@ module DataMapper
     autoload :IPAddress,          'dm-types/ip_address'
     autoload :Json,               'dm-types/json'
     autoload :Regexp,             'dm-types/regexp'
-    autoload :ParanoidBoolean,    'dm-types/boolean/destroyed'
-    autoload :ParanoidDateTime,   'dm-types/date_time/destroyed'
+    autoload :ParanoidBoolean,    'dm-types/destroyed/boolean'
+    autoload :ParanoidDateTime,   'dm-types/destroyed/date_time'
     autoload :Slug,               'dm-types/slug'
     autoload :UUID,               'dm-types/uuid'
     autoload :URI,                'dm-types/uri'
     autoload :Yaml,               'dm-types/yaml'
     autoload :APIKey,             'dm-types/api_key'
 
-    Boolean.autoload :Deleted,    'dm-types/boolean/destroyed'
+    module Created
+      autoload :Date,             'dm-types/created/date'
+      autoload :DateTime,         'dm-types/created/date_time'
+    end # module Created
 
-    Date.autoload :Created,       'dm-types/date/created'
-    Date.autoload :Updated,       'dm-types/date/updated'
-    # Date.autoload :Deleted,   'dm-types/date/destroyed'
+    module Updated
+      autoload :Date,             'dm-types/updated/date'
+      autoload :DateTime,         'dm-types/updated/date_time'
+    end # module Updated
 
-    DateTime.autoload :Created,   'dm-types/date_time/created'
-    DateTime.autoload :Updated,   'dm-types/date_time/updated'
-    DateTime.autoload :Deleted,   'dm-types/date_time/destroyed'
+    module Destroyed
+      autoload :Boolean,          'dm-types/destroyed/boolean'
+      autoload :DateTime,         'dm-types/destroyed/date_time'
+    end # module Destroyed
   end # class Property
 end # module DataMapper

@@ -117,12 +117,14 @@ describe 'DataMapper::Timestamp' do
         class GreenSmoothie
           include DataMapper::Resource
 
+          p DateTime, DataMapper::Property::DateTime
+
           property :id,         Serial
           property :name,       String
-          property :created_at, ::DataMapper::Property::DateTime::Created, :required => true
-          property :created_on, ::DataMapper::Property::Date::Created,     :required => true
-          property :updated_at, ::DataMapper::Property::DateTime::Updated, :required => true
-          property :updated_on, ::DataMapper::Property::Date::Updated,     :required => true
+          property :created_at, Created::DateTime, :required => true
+          property :created_on, Created::Date,     :required => true
+          property :updated_at, Updated::DateTime, :required => true
+          property :updated_on, Updated::Date,     :required => true
 
           auto_migrate!
         end
