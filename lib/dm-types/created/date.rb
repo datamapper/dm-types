@@ -15,10 +15,6 @@ module DataMapper
           resource[name] ||= stamp_value if resource.new?
         end
 
-        def stamp_value
-          ::Date.today
-        end
-
       end # class Date
     end # module Created
   end # class Property
