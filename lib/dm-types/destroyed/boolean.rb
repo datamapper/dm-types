@@ -13,7 +13,7 @@ module DataMapper
         end
 
         model.paranoid_properties << self
-        model.default_scope(repository_name).update(name => false)
+        model.default_scope(repository_name).update(name => self.class.default)
       end
 
       def stamp_resource(resource)
