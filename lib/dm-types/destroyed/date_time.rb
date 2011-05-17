@@ -2,8 +2,8 @@ require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
-    class ParanoidBoolean < Boolean
-      default   false
+    class Destroyed::DateTime < DateTime
+      default   nil
       lazy      true
 
       # @api private
@@ -13,12 +13,14 @@ module DataMapper
         end
 
         model.paranoid_properties << self
-        model.default_scope(repository_name).update(name => false)
+        model.default_scope(repository_name).update(name => nil)
       end
 
       def stamp_resource(resource)
-        resource[name] = true
+        resource[name] = ::DateTime.now
       end
-    end # class ParanoidBoolean
+    end # class Destroyed::DateTime
+
+    ParanoidDateTime = Destroyed::DateTime
   end # module Property
 end # module DataMapper
