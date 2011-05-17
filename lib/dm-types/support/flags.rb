@@ -2,13 +2,13 @@ module DataMapper
   module Types
     module Support
       module Flags
-        def self.included(base)
-          base.extend ClassMethods
-          base.accept_options :flags
-          base.__send__ :attr_reader, :flag_map
-          base.instance_variable_set(:@generated_classes, {})
+        def self.included(model)
+          model.extend ClassMethods
+          model.accept_options :flags
+          model.__send__ :attr_reader, :flag_map
+          model.instance_variable_set(:@generated_classes, {})
 
-          class << base
+          class << model
             attr_accessor :generated_classes
           end
         end

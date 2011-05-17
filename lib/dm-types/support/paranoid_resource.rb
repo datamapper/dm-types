@@ -11,8 +11,9 @@ module DataMapper
 
         # @api private
         def _destroy(execute_hooks = true)
-          return false unless saved?
-          if execute_hooks
+          if !saved?
+            false
+          elsif execute_hooks
             paranoid_destroy
           else
             super
