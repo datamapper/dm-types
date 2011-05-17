@@ -1,21 +1,19 @@
-require 'dm-types/paranoid/base'
+require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
     class ParanoidDateTime < DateTime
+      default   nil
       lazy      true
 
       # @api private
       def bind
-        property_name = name.inspect
+        unless model < DataMapper::Types::Support::ParanoidResource
+          model.__send__(:include, DataMapper::Types::Support::ParanoidResource)
+        end
 
-        model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          include DataMapper::Types::Paranoid::Base
-
-          set_paranoid_property(#{property_name}) { ::DateTime.now }
-
-          default_scope(#{repository_name.inspect}).update(#{property_name} => nil)
-        RUBY
+        model.set_paranoid_property(name) { ::DateTime.now }
+        model.default_scope(repository_name).update(name => false)
       end
     end # class ParanoidDateTime
   end # module Property
