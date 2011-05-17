@@ -2,19 +2,15 @@ module DataMapper
   module Types
     module Support
       module Flags
-        def self.included(base)
-          base.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-            extend DataMapper::Types::Support::Flags::ClassMethods
+        def self.included(model)
+          model.extend ClassMethods
+          model.accept_options :flags
+          model.__send__ :attr_reader, :flag_map
+          model.instance_variable_set(:@generated_classes, {})
 
-            accept_options :flags
-            attr_reader :flag_map
-
-            class << self
-              attr_accessor :generated_classes
-            end
-
-            self.generated_classes = {}
-          RUBY
+          class << model
+            attr_accessor :generated_classes
+          end
         end
 
         def custom?
