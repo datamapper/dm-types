@@ -2,7 +2,7 @@ require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
-    class Boolean::Deleted < Boolean
+    class Boolean::Destroyed < Boolean
       default   false
       lazy      true
 
@@ -16,11 +16,11 @@ module DataMapper
         model.default_scope(repository_name).update(name => false)
       end
 
-      def paranoid_value
-        true
+      def mark_resource_destroyed(resource)
+        resource[name] = true
       end
     end # class Boolean::Deleted
 
-    ParanoidBoolean = Boolean::Deleted
+    ParanoidBoolean = Boolean::Destroyed
   end # module Property
 end # module DataMapper

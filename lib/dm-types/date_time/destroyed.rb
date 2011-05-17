@@ -2,7 +2,7 @@ require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
-    class DateTime::Deleted < DateTime
+    class DateTime::Destroyed < DateTime
       default   nil
       lazy      true
 
@@ -16,11 +16,11 @@ module DataMapper
         model.default_scope(repository_name).update(name => false)
       end
 
-      def paranoid_value
-        ::DateTime.now
+      def mark_resource_destroyed(resource)
+        resource[name] = ::DateTime.now
       end
     end # class DateTime::Deleted
 
-    ParanoidDateTime = DateTime::Deleted
+    ParanoidDateTime = DateTime::Destroyed
   end # module Property
 end # module DataMapper
