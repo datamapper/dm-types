@@ -3,7 +3,7 @@ require "dm-types/support/temporally_stamped_resource"
 module DataMapper
   module Types
     module Support
-      module CreateStamp
+      module TemporalStampProperty
 
         def bind
           unless model < TemporallyStampedResource
@@ -13,8 +13,8 @@ module DataMapper
           model.temporally_stamped_properties << self
         end
 
-        def temporally_stamp_resource(resource)
-          resource[name] ||= current_temporal_value if resource.new?
+        def stamp_resource(resource)
+          resource[name] = stamp_value
         end
 
       end # module CreateStamp

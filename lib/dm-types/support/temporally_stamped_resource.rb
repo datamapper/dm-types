@@ -21,7 +21,7 @@ module DataMapper
           return unless set_stamps
 
           model.temporally_stamped_properties.each do |property|
-            property.temporally_stamp_resource(self)
+            property.stamp_resource(self)
           end
         end
 

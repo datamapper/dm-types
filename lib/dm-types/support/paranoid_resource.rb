@@ -23,7 +23,7 @@ module DataMapper
         # @api private
         def paranoid_destroy
           model.paranoid_properties.each do |property|
-            property.mark_resource_destroyed(self)
+            property.stamp_resource(self)
           end
           save_self
           self.persisted_state = Resource::State::Immutable.new(self)
