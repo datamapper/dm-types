@@ -1,11 +1,13 @@
 module DataMapper
-  class Property
-    module Datestamp
+  module Types
+    module Support
+      module Datestamp
 
-      def current
-        ::Date.today
-      end
+        def current_stamp
+          ::Date.today
+        end
 
-    end # module Datestamp
+      end # module Datestamp
+    end # module Support
   end # class Property
 end # module DataMapper

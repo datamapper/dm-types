@@ -1,14 +1,20 @@
+require "dm-types/support/stamped_resource"
+
 module DataMapper
-  class Property
-    module UpdateStamp
+  module Types
+    module Support
+      module UpdateStamp
 
-      def bind
-        property = self
-        model.before :save do
-          self[property.name] = property.current if dirty?
+        def bind
+          model.__send__ :include, StampedResource unless model < StampedResource
+          model.stamped_properties << self
         end
-      end
 
-    end # module UpdateStamp
+        def stamp(resource)
+          resource[name] = current_stamp
+        end
+
+      end # module UpdateStamp
+    end # module Support
   end # class Property
 end # module DataMapper

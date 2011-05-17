@@ -20,10 +20,14 @@ module DataMapper
     autoload :Yaml,               'dm-types/yaml'
     autoload :APIKey,             'dm-types/api_key'
 
-    Boolean.autoload  :Deleted,   'dm-types/boolean/deleted'
+    Boolean.autoload :Deleted,    'dm-types/boolean/deleted'
+
+    Date.autoload :Created,       'dm-types/date/created'
+    Date.autoload :Updated,       'dm-types/date/updated'
+    # Date.autoload :Deleted,   'dm-types/date/deleted'
 
     DateTime.autoload :Created,   'dm-types/date_time/created'
     DateTime.autoload :Updated,   'dm-types/date_time/updated'
     DateTime.autoload :Deleted,   'dm-types/date_time/deleted'
-  end
-end
+  end # class Property
+end # module DataMapper

@@ -1,11 +1,11 @@
 require 'dm-types/support/timestamp'
-require 'dm-types/support/create_stamp'
+require 'dm-types/support/update_stamp'
 
 module DataMapper
   class Property
     class DateTime::Updated < DateTime
-      include Support::Timestamp
-      include Support::UpdateStamp
+      include Types::Support::Timestamp
+      include Types::Support::UpdateStamp
 
       required true
       auto_validation false if accepted_options.include?(:auto_validation)
