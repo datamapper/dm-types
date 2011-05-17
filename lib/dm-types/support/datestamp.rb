@@ -3,7 +3,7 @@ module DataMapper
     module Support
       module Datestamp
 
-        def current_stamp
+        def current_temporal_value
           ::Date.today
         end
 

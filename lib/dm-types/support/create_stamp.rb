@@ -1,4 +1,4 @@
-require "dm-types/support/stamped_resource"
+require "dm-types/support/temporally_stamped_resource"
 
 module DataMapper
   module Types
@@ -6,12 +6,15 @@ module DataMapper
       module CreateStamp
 
         def bind
-          model.__send__ :include, StampedResource unless model < StampedResource
-          model.stamped_properties << self
+          unless model < TemporallyStampedResource
+            model.__send__ :include, TemporallyStampedResource
+          end
+
+          model.temporally_stamped_properties << self
         end
 
-        def stamp(resource)
-          resource[name] ||= current_stamp if resource.new?
+        def temporally_stamp_resource(resource)
+          resource[name] ||= current_temporal_value if resource.new?
         end
 
       end # module CreateStamp
