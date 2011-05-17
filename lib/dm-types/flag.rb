@@ -5,7 +5,7 @@ module DataMapper
   class Property
     class Flag < Integer
 
-      include Flags
+      include Types::Support::Flags
 
       def initialize(model, name, options = {})
         super
