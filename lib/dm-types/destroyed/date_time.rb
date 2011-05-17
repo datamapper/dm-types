@@ -8,8 +8,8 @@ module DataMapper
       default   nil
       lazy      true
 
-      def stamp_resource(resource)
-        resource[name] = ::DateTime.now
+      def stamp_value
+        ::DateTime.now
       end
     end # class Destroyed::DateTime
 

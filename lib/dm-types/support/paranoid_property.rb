@@ -15,6 +15,10 @@ module DataMapper
           model.default_scope(repository_name).update(name => self.class.default)
         end
 
+        def stamp_resource(resource)
+          resource[name] = stamp_value
+        end
+
       end # module ParanoidProperty
     end # module Support
   end # module Types

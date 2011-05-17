@@ -8,8 +8,8 @@ module DataMapper
       default   false
       lazy      true
 
-      def stamp_resource(resource)
-        resource[name] = true
+      def stamp_value
+        true
       end
     end # class Destroyed::Boolean
 
