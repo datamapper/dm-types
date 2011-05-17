@@ -4,7 +4,7 @@ module DataMapper
       module ParanoidResource
         def self.included(model)
           model.extend ClassMethods
-          model.instance_variable_set(:@paranoid_properties, {})
+          model.instance_variable_set(:@paranoid_properties, [].to_set)
         end
 
       private
@@ -21,8 +21,8 @@ module DataMapper
 
         # @api private
         def paranoid_destroy
-          model.paranoid_properties.each do |name, block|
-            attribute_set(name, block.call(self))
+          model.paranoid_properties.each do |property|
+            attribute_set(property.name, property.paranoid_value)
           end
           save_self
           self.persisted_state = Resource::State::Immutable.new(self)
@@ -30,23 +30,17 @@ module DataMapper
         end
 
         module ClassMethods
-          def with_deleted
-            with_exclusive_scope({}) { block_given? ? yield : all }
-          end
-
           # @api private
-          def paranoid_properties
-            @paranoid_properties
-          end
-
-          # @api private
-          def set_paranoid_property(name, &block)
-            paranoid_properties[name] = block
-          end
+          attr_reader :paranoid_properties
 
           def inherited(model)
             model.instance_variable_set(:@paranoid_properties, @paranoid_properties.dup)
             super
+          end
+
+          # @api public
+          def with_deleted
+            with_exclusive_scope({}) { block_given? ? yield : all }
           end
         end # module ClassMethods
       end # module Paranoia

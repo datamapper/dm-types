@@ -12,8 +12,12 @@ module DataMapper
           model.__send__(:include, DataMapper::Types::Support::ParanoidResource)
         end
 
-        model.set_paranoid_property(name) { ::DateTime.now }
+        model.paranoid_properties << self
         model.default_scope(repository_name).update(name => false)
+      end
+
+      def paranoid_value
+        ::DateTime.now
       end
     end # class ParanoidDateTime
   end # module Property
