@@ -12,8 +12,12 @@ module DataMapper
           model.__send__(:include, DataMapper::Types::Support::ParanoidResource)
         end
 
-        model.set_paranoid_property(name) { true }
+        model.paranoid_properties << self
         model.default_scope(repository_name).update(name => false)
+      end
+
+      def stamp_resource(resource)
+        resource[name] = true
       end
     end # class ParanoidBoolean
   end # module Property
