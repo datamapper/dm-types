@@ -19,5 +19,16 @@ module DataMapper
     autoload :URI,                'dm-types/uri'
     autoload :Yaml,               'dm-types/yaml'
     autoload :APIKey,             'dm-types/api_key'
-  end
-end
+
+    module Created
+      autoload :Date,             'dm-types/created/date'
+      autoload :DateTime,         'dm-types/created/date_time'
+    end # module Created
+
+    module Updated
+      autoload :Date,             'dm-types/updated/date'
+      autoload :DateTime,         'dm-types/updated/date_time'
+    end # module Updated
+
+  end # class Property
+end # module DataMapper
