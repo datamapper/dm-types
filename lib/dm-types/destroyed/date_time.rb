@@ -1,4 +1,4 @@
-require 'dm-types/support/paranoid_resource'
+require 'dm-types/support/paranoid_property'
 
 module DataMapper
   class Property
