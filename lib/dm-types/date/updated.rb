@@ -3,13 +3,13 @@ require 'dm-types/support/create_stamp'
 
 module DataMapper
   class Property
-    class CreatedDate < DateTime
+    class Date::Updated < Date
       include Support::Datestamp
-      include Support::CreateStamp
+      include Support::UpdateStamp
 
       required true
       auto_validation false if accepted_options.include?(:auto_validation)
 
-    end # class CreatedDate
+    end # class Date::Updated
   end # class Property
 end # module DataMapper

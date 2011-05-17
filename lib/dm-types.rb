@@ -12,12 +12,18 @@ module DataMapper
     autoload :IPAddress,          'dm-types/ip_address'
     autoload :Json,               'dm-types/json'
     autoload :Regexp,             'dm-types/regexp'
-    autoload :ParanoidBoolean,    'dm-types/paranoid_boolean'
-    autoload :ParanoidDateTime,   'dm-types/paranoid_datetime'
+    autoload :ParanoidBoolean,    'dm-types/boolean/deleted'
+    autoload :ParanoidDateTime,   'dm-types/date_time/deleted'
     autoload :Slug,               'dm-types/slug'
     autoload :UUID,               'dm-types/uuid'
     autoload :URI,                'dm-types/uri'
     autoload :Yaml,               'dm-types/yaml'
     autoload :APIKey,             'dm-types/api_key'
+
+    Boolean.autoload  :Deleted,   'dm-types/boolean/deleted'
+
+    DateTime.autoload :Created,   'dm-types/date_time/created'
+    DateTime.autoload :Updated,   'dm-types/date_time/updated'
+    DateTime.autoload :Deleted,   'dm-types/date_time/deleted'
   end
 end

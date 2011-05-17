@@ -2,7 +2,7 @@ require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
-    class ParanoidDateTime < DateTime
+    class DateTime::Deleted < DateTime
       default   nil
       lazy      true
 
@@ -19,6 +19,8 @@ module DataMapper
       def paranoid_value
         ::DateTime.now
       end
-    end # class ParanoidDateTime
+    end # class DateTime::Deleted
+
+    ParanoidDateTime = DateTime::Deleted
   end # module Property
 end # module DataMapper

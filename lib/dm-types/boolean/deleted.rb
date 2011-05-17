@@ -2,7 +2,7 @@ require 'dm-types/support/paranoid_resource'
 
 module DataMapper
   class Property
-    class ParanoidBoolean < Boolean
+    class Boolean::Deleted < Boolean
       default   false
       lazy      true
 
@@ -19,6 +19,8 @@ module DataMapper
       def paranoid_value
         true
       end
-    end # class ParanoidBoolean
+    end # class Boolean::Deleted
+
+    ParanoidBoolean = Boolean::Deleted
   end # module Property
 end # module DataMapper
