@@ -5,7 +5,7 @@ module DataMapper
   class Property
     class Enum < Integer
 
-      include Flags
+      include Types::Support::Flags
 
       def initialize(model, name, options = {})
         super

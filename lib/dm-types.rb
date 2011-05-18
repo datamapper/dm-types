@@ -12,12 +12,28 @@ module DataMapper
     autoload :IPAddress,          'dm-types/ip_address'
     autoload :Json,               'dm-types/json'
     autoload :Regexp,             'dm-types/regexp'
-    autoload :ParanoidBoolean,    'dm-types/paranoid_boolean'
-    autoload :ParanoidDateTime,   'dm-types/paranoid_datetime'
+    # TODO: deprecate use of these constants
+    autoload :ParanoidBoolean,    'dm-types/destroyed/boolean'
+    autoload :ParanoidDateTime,   'dm-types/destroyed/date_time'
     autoload :Slug,               'dm-types/slug'
     autoload :UUID,               'dm-types/uuid'
     autoload :URI,                'dm-types/uri'
     autoload :Yaml,               'dm-types/yaml'
     autoload :APIKey,             'dm-types/api_key'
-  end
-end
+
+    module Created
+      autoload :Date,             'dm-types/created/date'
+      autoload :DateTime,         'dm-types/created/date_time'
+    end # module Created
+
+    module Updated
+      autoload :Date,             'dm-types/updated/date'
+      autoload :DateTime,         'dm-types/updated/date_time'
+    end # module Updated
+
+    module Destroyed
+      autoload :Boolean,          'dm-types/destroyed/boolean'
+      autoload :DateTime,         'dm-types/destroyed/date_time'
+    end # module Destroyed
+  end # class Property
+end # module DataMapper
