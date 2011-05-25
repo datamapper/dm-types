@@ -12,7 +12,7 @@ DM_DO_ADAPTERS = %w[ sqlite postgres mysql oracle sqlserver ]
 gem 'bcrypt-ruby', '~> 2.1.4'
 gem 'dm-core',     DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}"
 gem 'fastercsv',   '~> 1.5.4'
-gem 'json',        '~> 1.5.1'
+gem 'multi_json',  '~> 1.0.3'
 gem 'stringex',    '~> 1.2.0'
 gem 'uuidtools',   '~> 2.1.2'
 

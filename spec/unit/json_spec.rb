@@ -13,7 +13,7 @@ try_spec do
     describe '#valid?' do
       before :all do
         @string = '{ "foo": "bar" }'
-        @json   = JSON.load(@string)
+        @json   = MultiJson.decode(@string)
       end
 
       describe "with a String" do
@@ -36,7 +36,7 @@ try_spec do
 
       describe 'when Json encoded primitive string is provided' do
         it 'returns decoded value as Ruby string' do
-          @property.load(JSON.dump(:value => 'JSON encoded string')).should == { 'value' => 'JSON encoded string' }
+          @property.load(MultiJson.encode(:value => 'JSON encoded string')).should == { 'value' => 'JSON encoded string' }
         end
       end
 

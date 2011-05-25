@@ -1,5 +1,5 @@
 require 'dm-core'
-require 'json' unless defined? JSON
+require 'multi_json'
 
 module DataMapper
   class Property
@@ -21,7 +21,7 @@ module DataMapper
         if value.nil?
           nil
         elsif value.is_a?(::String)
-          ::JSON.load(value)
+          typecast_to_primitive(value)
         else
           raise ArgumentError.new("+value+ of a property of JSON type must be nil or a String")
         end
@@ -31,12 +31,12 @@ module DataMapper
         if value.nil? || value.is_a?(::String)
           value
         else
-          ::JSON.dump(value)
+          MultiJson.encode(value)
         end
       end
 
       def typecast_to_primitive(value)
-        ::JSON.load(value.to_s)
+        MultiJson.decode(value.to_s)
       end
 
     end # class Json
