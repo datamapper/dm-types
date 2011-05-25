@@ -90,7 +90,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/datamapper/dm-types}
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{datamapper}
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{DataMapper plugin providing extra data types}
   s.test_files = [
     "spec/fixtures/api_user.rb",
@@ -141,6 +141,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.1.0"])
       s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_runtime_dependency(%q<multi_json>, ["~> 1.0.3"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.5.1"])
       s.add_runtime_dependency(%q<stringex>, ["~> 1.2.0"])
       s.add_runtime_dependency(%q<uuidtools>, ["~> 2.1.2"])
       s.add_development_dependency(%q<dm-validations>, ["~> 1.1.0"])
@@ -152,6 +153,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<dm-core>, ["~> 1.1.0"])
       s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
+      s.add_dependency(%q<json>, ["~> 1.5.1"])
       s.add_dependency(%q<stringex>, ["~> 1.2.0"])
       s.add_dependency(%q<uuidtools>, ["~> 2.1.2"])
       s.add_dependency(%q<dm-validations>, ["~> 1.1.0"])
@@ -164,6 +166,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<dm-core>, ["~> 1.1.0"])
     s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
     s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
+    s.add_dependency(%q<json>, ["~> 1.5.1"])
     s.add_dependency(%q<stringex>, ["~> 1.2.0"])
     s.add_dependency(%q<uuidtools>, ["~> 2.1.2"])
     s.add_dependency(%q<dm-validations>, ["~> 1.1.0"])
