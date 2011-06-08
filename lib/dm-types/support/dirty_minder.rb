@@ -67,13 +67,17 @@ module DataMapper
         MUTATION_METHODS = {
           ::Array => %w{
             []= push << shift pop insert unshift delete
-            delete_at replace slice! reverse! rotate! compact!
-            flatten! uniq!
-          },
+            delete_at replace fill clear
+            slice! reverse! rotate! compact! flatten! uniq!
+            collect! map! sort! sort_by! reject! delete_if!
+            select! shuffle!
+          }.select { |meth| ::Array.instance_methods.include?(meth) },
 
           ::Hash => %w{
-            []= store replace merge! update delete
-          },
+            []= store delete delete_if replace update
+            delete rehash shift clear
+            merge! reject! select!
+          }.select { |meth| ::Hash.instance_methods.include?(meth) },
         }
 
         def self.extended(instance)
