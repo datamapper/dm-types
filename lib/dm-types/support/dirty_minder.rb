@@ -81,14 +81,13 @@ module DataMapper
         }
 
         def self.extended(instance)
-          return unless MUTATION_METHODS.keys.include?(instance.class)
+          return unless type = MUTATION_METHODS.keys.find { |k| instance.kind_of?(k) }
 
-          MUTATION_METHODS[instance.class].each do |meth|
-            next unless instance.respond_to?(meth)
+          MUTATION_METHODS[type].each do |meth|
             instance.instance_eval("alias :'orig_#{meth}' :'#{meth}'")
           end
 
-          instance.extend const_get("#{instance.class}Hooks")
+          instance.extend const_get("#{type}Hooks")
         end
 
         MUTATION_METHODS.each do |klass, methods|
