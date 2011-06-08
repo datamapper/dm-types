@@ -63,7 +63,7 @@ module DataMapper
   class Property
     module DirtyMinder
 
-      module Wrapper
+      module Hooker
         MUTATION_METHODS = {
           ::Array => %w{
             []= push << shift pop insert unshift delete
@@ -113,26 +113,26 @@ module DataMapper
           return if before.hash == after.hash
           @resource.attribute_set(@property.name, after)
         end
-      end # Wrapper
+      end # Hooker
 
       # This catches any direct assignment, allowing us to hook the Hash or Array.
       def set(resource, value)
-        wrap_value(resource, value) unless value.kind_of? Wrapper
+        hook_value(resource, value) unless value.kind_of? Hooker
         super
       end
 
       # This gets called when Resource#reload is called (instead of #set).
       def set!(resource, value)
-        wrap_value(resource, value) unless value.kind_of? Wrapper
+        hook_value(resource, value) unless value.kind_of? Hooker
         super
       end
 
       private
 
-      def wrap_value(resource, value)
-        return if value.kind_of? Wrapper
+      def hook_value(resource, value)
+        return if value.kind_of? Hooker
 
-        value.extend Wrapper
+        value.extend Hooker
         value.track(resource, self)
       end
 
