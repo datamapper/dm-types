@@ -1,4 +1,5 @@
 require 'dm-core'
+require 'dm-types/support/dirty_minder'
 
 if RUBY_VERSION >= '1.9.0'
   require 'csv'
@@ -29,6 +30,8 @@ module DataMapper
           when ::String then value
         end
       end
+
+      include ::DataMapper::Property::DirtyMinder
 
     end # class Csv
   end # class Property

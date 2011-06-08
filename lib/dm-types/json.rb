@@ -1,4 +1,5 @@
 require 'dm-core'
+require 'dm-types/support/dirty_minder'
 require 'multi_json'
 
 module DataMapper
@@ -38,6 +39,8 @@ module DataMapper
       def typecast_to_primitive(value)
         MultiJson.decode(value.to_s)
       end
+
+      include ::DataMapper::Property::DirtyMinder
 
     end # class Json
 
