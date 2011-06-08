@@ -112,13 +112,15 @@ try_spec do
             @resource.reload
           end
 
-          it "should NOT remember the changed detail (YET)" do
-            # TODO: Not supported (yet?) -- this is a much harder problem to
-            # solve: using mutating accessors of nested objects.  We could
-            # detect it from #dirty? (using the #hash method), but #dirty? only
-            # returns the status of known-mutated properties (not full,
-            # on-demand scan of object dirty-ness).
-            @resource.positions['details']['awesome'].should == true
+          it "should remember the changed detail" do
+            pending "not supported (YET)" do
+              # TODO: Not supported (yet?) -- this is a much harder problem to
+              # solve: using mutating accessors of nested objects.  We could
+              # detect it from #dirty? (using the #hash method), but #dirty?
+              # only returns the status of known-mutated properties (not full,
+              # on-demand scan of object dirty-ness).
+              @resource.positions['details']['awesome'].should == 'VERY TRUE'
+            end
           end
         end
       end # positions indirectly mutated as a hash
@@ -176,13 +178,15 @@ try_spec do
               @resource.reload
             end
 
-            it "should NOT remember the changed detail (YET)" do
-              # TODO: Not supported (yet?) -- this is a much harder problem to
-              # solve: using mutating accessors of nested objects.  We could
-              # detect it from #dirty? (using the #hash method), but #dirty? only
-              # returns the status of known-mutated properties (not full,
-              # on-demand scan of object dirty-ness).
-              @resource.positions.last['details'].has_key?('high_risk').should == false
+            it "should remember the changed detail" do
+              pending "not supported (YET)" do
+                # TODO: Not supported (yet?) -- this is a much harder problem to
+                # solve: using mutating accessors of nested objects.  We could
+                # detect it from #dirty? (using the #hash method), but #dirty?
+                # only returns the status of known-mutated properties (not full,
+                # on-demand scan of object dirty-ness).
+                @resource.positions.last['details']['high_risk'].should == true
+              end
             end
           end
         end
