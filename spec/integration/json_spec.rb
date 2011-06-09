@@ -76,6 +76,7 @@ try_spec do
           }
           @resource.save
           @resource.reload
+          @resource.positions['title'].should == 'Layperson'
         end
 
         describe "when I change positions" do
@@ -123,6 +124,21 @@ try_spec do
             end
           end
         end
+
+        describe "when I reload the resource while the property is dirty" do
+          before :all do
+            @resource.positions['title'] = 'Chief Layer of People'
+            @resource.reload
+          end
+
+          it "should reflect the previously set/persisted value" do
+            pending "DKUBB SAID HE'D FIX THIS" do
+              @resource.positions.should_not be_nil
+              @resource.positions['title'].should == 'Layperson'
+            end
+          end
+        end
+
       end # positions indirectly mutated as a hash
 
       describe 'with positions indirectly mutated as an array' do
@@ -135,6 +151,7 @@ try_spec do
           ]
           @resource.save
           @resource.reload
+          @resource.positions.first['title'].should == 'Layperson'
         end
 
         describe "when I remove the position" do
@@ -189,7 +206,38 @@ try_spec do
               end
             end
           end
+        end # when I add a new position
+
+        describe "when I remove the position with a block-based mutator" do
+          before :all do
+            @resource.clean?.should == true
+            @resource.positions.reject! { |_| true }
+            @resource.save
+            @resource.reload
+          end
+
+          it "should know there aren't any positions" do
+            @resource.positions.should == []
+          end
         end
+
+        describe "when I mutate positions through a reference" do
+          before :all do
+            @resource.clean?.should == true
+            @positions = @resource.positions
+            @positions << {
+              'company' => "Ooga Booga, Inc",
+              'title'   => "Rocker",
+            }
+          end
+
+          it "should reflect the change in both the property and the reference" do
+            @resource.positions.length.should == 2
+            @resource.positions.last['title'].should == 'Rocker'
+            @positions.last['title'].should == 'Rocker'
+          end
+        end
+
       end # positions indirectly mutated as an array
 
     end
