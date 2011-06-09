@@ -1,5 +1,6 @@
 require 'yaml'
 require 'dm-core'
+require 'dm-types/support/dirty_minder'
 
 module DataMapper
   class Property
@@ -32,6 +33,8 @@ module DataMapper
       def typecast(value)
         value
       end
+
+      include ::DataMapper::Property::DirtyMinder
 
     end # class Yaml
   end # class Property
