@@ -14,8 +14,8 @@ module DataMapper
 
       def dump(value)
         case value
-          when ::Numeric, ::Time then value.to_i
-          when ::DateTime        then datetime_to_time(value).to_i
+        when ::Numeric, ::Time then value.to_i
+        when ::DateTime        then datetime_to_time(value).to_i
         end
       end
 
