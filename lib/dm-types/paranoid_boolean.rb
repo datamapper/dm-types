@@ -8,15 +8,12 @@ module DataMapper
 
       # @api private
       def bind
-        property_name = name.inspect
+        unless model < DataMapper::Types::Paranoid::Base
+          model.__send__ :include, DataMapper::Types::Paranoid::Base
+        end
 
-        model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          include DataMapper::Types::Paranoid::Base
-
-          set_paranoid_property(#{property_name}) { true }
-
-          default_scope(#{repository_name.inspect}).update(#{property_name} => false)
-        RUBY
+        model.set_paranoid_property(name) { true }
+        model.default_scope(repository_name).update(name => false)
       end
     end # class ParanoidBoolean
   end # module Property

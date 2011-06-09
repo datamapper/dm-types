@@ -7,15 +7,12 @@ module DataMapper
 
       # @api private
       def bind
-        property_name = name.inspect
+        unless model < DataMapper::Types::Paranoid::Base
+          model.__send__ :include, DataMapper::Types::Paranoid::Base
+        end
 
-        model.class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          include DataMapper::Types::Paranoid::Base
-
-          set_paranoid_property(#{property_name}) { ::DateTime.now }
-
-          default_scope(#{repository_name.inspect}).update(#{property_name} => nil)
-        RUBY
+        model.set_paranoid_property(name) { ::DateTime.now }
+        model.default_scope(repository_name).update(name => nil)
       end
     end # class ParanoidDateTime
   end # module Property
