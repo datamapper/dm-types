@@ -104,9 +104,8 @@ module DataMapper
             class_eval <<-RUBY, __FILE__, __LINE__ + 1
               module #{klass}Hooks
                 def #{meth}(*)
-                  before = self.clone
-                  ret    = super
-                  after  = self
+                  original_hash = hash
+                  ret           = super
 
                   # If the hashes aren't equivalent then we know the Resource
                   # should be dirty.  However because we mutated self, normal
@@ -118,9 +117,9 @@ module DataMapper
                   # tracking and set the value of the property directly to the
                   # previous value (a different object now, because it's a clone).
                   # Then trigger the State tracking like normal.
-                  if before.hash != after.hash
-                    @property.set(@resource, before)
-                    @resource.attribute_set(@property.name, after)
+                  if original_hash != hash
+                    @property.set(@resource, nil)
+                    @resource.attribute_set(@property.name, self)
                   end
 
                   ret
