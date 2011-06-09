@@ -100,33 +100,33 @@ module DataMapper
         end
 
         MUTATION_METHODS.each do |klass, methods|
-          eval("module #{klass}Hooks; end")
+          methods.each do |meth|
+            class_eval <<-RUBY, __FILE__, __LINE__ + 1
+              module #{klass}Hooks
+                def #{meth}(*)
+                  before = self.clone
+                  ret    = super
+                  after  = self
 
-          const_get("#{klass}Hooks").module_eval do
-            methods.each do |meth|
-              define_method(meth) do |*args, &blk|
-                before = self.clone
-                ret    = super(*args, &blk)
-                after  = self
+                  # If the hashes aren't equivalent then we know the Resource
+                  # should be dirty.  However because we mutated self, normal
+                  # State tracking will never trigger, because it will compare the
+                  # new value - self - to the Resource's existing property value -
+                  # which is also self.
+                  #
+                  # The solution is to drop 1 level beneath Resource State
+                  # tracking and set the value of the property directly to the
+                  # previous value (a different object now, because it's a clone).
+                  # Then trigger the State tracking like normal.
+                  if before.hash != after.hash
+                    @property.set(@resource, before)
+                    @resource.attribute_set(@property.name, after)
+                  end
 
-                # If the hashes aren't equivalent then we know the Resource
-                # should be dirty.  However because we mutated self, normal
-                # State tracking will never trigger, because it will compare the
-                # new value - self - to the Resource's existing property value -
-                # which is also self.
-                #
-                # The solution is to drop 1 level beneath Resource State
-                # tracking and set the value of the property directly to the
-                # previous value (a different object now, because it's a clone).
-                # Then trigger the State tracking like normal.
-                if before.hash != after.hash
-                  @property.set(@resource, before)
-                  @resource.attribute_set(@property.name, after)
+                  ret
                 end
-
-                ret
               end
-            end
+            RUBY
           end
         end
 
