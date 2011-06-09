@@ -93,9 +93,9 @@ module DataMapper
 
           const_get("#{klass}Hooks").module_eval do
             methods.each do |meth|
-              define_method(meth) do |*args|
+              define_method(meth) do |*args, &blk|
                 new = self.clone
-                ret = new.send(:"orig_#{meth}", *args)
+                ret = new.send(:"orig_#{meth}", *args, &blk)
                 mark_dirty_if_different(self, new)
                 ret
               end
