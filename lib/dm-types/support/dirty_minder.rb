@@ -85,13 +85,13 @@ module DataMapper
             slice! reverse! rotate! compact! flatten! uniq!
             collect! map! sort! sort_by! reject! delete_if!
             select! shuffle!
-          }.select { |meth| ::Array.instance_methods.include?(meth) },
+          }.select { |meth| ::Array.instance_methods.any? { |m| m.to_s == meth } },
 
           ::Hash => %w{
             []= store delete delete_if replace update
             delete rehash shift clear
             merge! reject! select!
-          }.select { |meth| ::Hash.instance_methods.include?(meth) },
+          }.select { |meth| ::Hash.instance_methods.any? { |m| m.to_s == meth } },
         }
 
         def self.extended(instance)
