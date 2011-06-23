@@ -8,8 +8,6 @@ module DataMapper
       include Flags
 
       def initialize(model, name, options = {})
-        super
-
         @flag_map = {}
 
         flags = options.fetch(:flags, self.class.flags)
@@ -17,13 +15,11 @@ module DataMapper
           @flag_map[i + 1] = flag
         end
 
-        if defined?(::DataMapper::Validations)
-          util = ::DataMapper::Validations::AutoValidations
-          unless util.skip_auto_validation_for?(self)
-            allowed = flag_map.values_at(*flag_map.keys.sort)
-            model.validates_within name, util.options_with_message({ :set => allowed }, self, :within)
-          end
+        if self.class.accepted_options.include?(:set) && !options.include?(:set)
+          options[:set] = @flag_map.values_at(*@flag_map.keys.sort)
         end
+
+        super
       end
 
       def load(value)
