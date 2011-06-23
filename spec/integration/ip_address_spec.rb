@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-Spec::Matchers.define :run_ipv4 do |model|
+Spec::Matchers.define :run_ipv4 do
   match do |model|
     model.runs_ipv4?
   end
 end
 
-Spec::Matchers.define :run_ipv6 do |model|
+Spec::Matchers.define :run_ipv6 do
   match do |model|
     model.runs_ipv6?
   end
