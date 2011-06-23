@@ -18,9 +18,10 @@ module DataMapper
         end
 
         if defined?(::DataMapper::Validations)
-          unless ::DataMapper::Validations::AutoValidations.skip_auto_validation_for?(self)
+          util = ::DataMapper::Validations::AutoValidations
+          unless util.skip_auto_validation_for?(self)
             allowed = flag_map.values_at(*flag_map.keys.sort)
-            model.validates_within name, model.options_with_message({ :set => allowed }, self, :within)
+            model.validates_within name, util.options_with_message({ :set => allowed }, self, :within)
           end
         end
       end
