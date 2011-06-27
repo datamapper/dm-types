@@ -134,13 +134,7 @@ module DataMapper
 
       end # Hooker
 
-      # This catches any direct assignment, allowing us to hook the Hash or Array.
-      def set(resource, value)
-        hook_value(resource, value) unless value.kind_of? Hooker
-        super
-      end
-
-      # This gets called when Resource#reload is called (instead of #set).
+      # Catch any direct assignment (#set), and any Resource#reload (set!).
       def set!(resource, value)
         hook_value(resource, value) unless value.kind_of? Hooker
         super
