@@ -68,8 +68,6 @@
 #
 # TODO: add support for detecting mutations in nested objects, but we can't
 #       catch the assignment from here (yet?).
-# TODO: add support for block-based mutating methods
-# TODO: ensure we got all the Hash mutation methods
 # TODO: ensure we covered all indirectly-mutable classes that DM uses underneath
 #       a property type
 
