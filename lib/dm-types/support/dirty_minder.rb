@@ -70,6 +70,7 @@
 #       catch the assignment from here (yet?).
 # TODO: ensure we covered all indirectly-mutable classes that DM uses underneath
 #       a property type
+# TODO: figure out how to hook core class methods on RBX (which do use #send)
 
 module DataMapper
   class Property
@@ -93,6 +94,17 @@ module DataMapper
         }
 
         def self.extended(instance)
+          # FIXME: DirtyMinder is currently unsupported on RBX, because unlike
+          # the other supported Rubies, RBX core class (e.g. Array, Hash)
+          # methods use #send().  In other words, the other Rubies don't use
+          # #send() (they map directly to their C functions).
+          #
+          # The current methodology takes advantage of this by using #send() to
+          # forward method invocations we've hooked.  Supporting RBX will
+          # require finding another way, possibly for all Rubies.  In the
+          # meantime, something is better than nothing.
+          return if defined?('RUBY_ENGINE') and RUBY_ENGINE == "rbx"
+
           return unless type = MUTATION_METHODS.keys.find { |k| instance.kind_of?(k) }
           instance.extend const_get("#{type}Hooks")
         end
