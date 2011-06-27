@@ -103,7 +103,7 @@ module DataMapper
           # forward method invocations we've hooked.  Supporting RBX will
           # require finding another way, possibly for all Rubies.  In the
           # meantime, something is better than nothing.
-          return if defined?('RUBY_ENGINE') and RUBY_ENGINE == "rbx"
+          return if defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
           return unless type = MUTATION_METHODS.keys.find { |k| instance.kind_of?(k) }
           instance.extend const_get("#{type}Hooks")

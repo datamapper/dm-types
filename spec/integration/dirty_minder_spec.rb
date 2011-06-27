@@ -11,7 +11,7 @@ try_spec do
   # method invocations we've hooked.  Supporting RBX will require finding
   # another way, possibly for all Rubies.  In the meantime, something is better
   # than nothing.
-  next if defined?('RUBY_ENGINE') and RUBY_ENGINE == "rbx"
+  next if defined?(RUBY_ENGINE) and RUBY_ENGINE == 'rbx'
 
   require './spec/fixtures/person'
 
