@@ -32,6 +32,12 @@ describe DataMapper::Property::EpochTime do
 
       it { should == value }
     end
+    
+    describe 'with a UNIX time string' do
+      let(:value) { Time.now.to_i.to_s }
+
+      it { should == value.to_i }
+    end
 
     describe 'with nil' do
       let(:value) { nil }
@@ -47,6 +53,12 @@ describe DataMapper::Property::EpochTime do
       let(:value) { Time.now.to_i }
 
       it { should == Time.at(value) }
+    end
+    
+    describe 'with a UNIX time string' do
+      let(:value) { Time.now.to_i.to_s }
+
+      it { should == Time.at(value.to_i) }
     end
 
     describe 'with nil' do
