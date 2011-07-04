@@ -5,7 +5,7 @@ module DataMapper
     class EpochTime < Integer
 
       def load(value)
-        if value.kind_of?(::Numeric)
+        if value.kind_of?(::Numeric) || value =~ /^\d+$/
           ::Time.at(value.to_i)
         else
           value
@@ -15,6 +15,7 @@ module DataMapper
       def dump(value)
         case value
           when ::Numeric, ::Time then value.to_i
+          when /^\d+$/           then value.to_i
           when ::DateTime        then datetime_to_time(value).to_i
         end
       end
