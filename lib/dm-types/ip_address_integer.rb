@@ -5,15 +5,11 @@ module DataMapper
   class Property
     class IPAddressInteger < Integer
 
-      def initialize(name, model, options = {})
+      def initialize(model, name, options = {})
         Property.accept_options(:version)
-        super
+        @format = options[:version] == :ipv6 ? Socket::AF_INET6 : Socket::AF_INET
         
-        @format = if options[:version] == :ipv6
-          Socket::AF_INET6
-        else
-          Socket::AF_INET
-        end
+        super
       end
 
       def load(value)
@@ -30,6 +26,7 @@ module DataMapper
           when ::IPAddr  then value.to_i
           when ::String  then IPAddr.new(value, @format).to_i unless value.empty?
           when ::Integer then value
+          else value
         end
       end
 
