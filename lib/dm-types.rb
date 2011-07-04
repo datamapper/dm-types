@@ -10,6 +10,7 @@ module DataMapper
     autoload :FilePath,           'dm-types/file_path'
     autoload :Flag,               'dm-types/flag'
     autoload :IPAddress,          'dm-types/ip_address'
+    autoload :IPAddressInteger,   'dm-types/ip_address_integer'
     autoload :Json,               'dm-types/json'
     autoload :Regexp,             'dm-types/regexp'
     autoload :ParanoidBoolean,    'dm-types/paranoid_boolean'
