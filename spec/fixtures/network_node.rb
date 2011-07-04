@@ -12,10 +12,11 @@ module DataMapper
       # Properties
       #
 
-      property :id,               Serial
-      property :ip_address,       IPAddress
-      property :cidr_subnet_bits, Integer
-      property :node_uuid,        UUID
+      property :id,                 Serial
+      property :ip_address,         IPAddress
+      property :ip_address_integer, IPAddressInteger
+      property :cidr_subnet_bits,   Integer
+      property :node_uuid,          UUID
 
       #
       # API
