@@ -2,21 +2,31 @@ require 'dm-core'
 
 module DataMapper
   class Property
-    class EpochTime < Integer
-
-      def load(value)
+    class EpochTime < Time
+      def typecast_to_primitive(value)
         if value.kind_of?(::Numeric)
           ::Time.at(value.to_i)
         else
-          value
+          super
+        end
+      end
+      
+      def valid?(value)
+        value.nil? || value.kind_of?(::Time)
+      end
+
+      def typecast(value)
+        case value
+          when ::Time      then value
+          when ::Numeric   then ::Time.at(value.to_i)
+          when ::DateTime  then datetime_to_time(value)
+          when ::String    then ::Time.parse(value)
+          else super
         end
       end
 
       def dump(value)
-        case value
-          when ::Numeric, ::Time then value.to_i
-          when ::DateTime        then datetime_to_time(value).to_i
-        end
+        value.to_i if value
       end
 
     private
