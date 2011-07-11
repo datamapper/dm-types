@@ -13,9 +13,19 @@ module DataMapper
       end
 
       def dump(value)
+        value.to_i if value
+      end
+
+      def custom?
+        true
+      end
+
+      def typecast(value)
         case value
-          when ::Numeric, ::Time then value.to_i
-          when ::DateTime        then datetime_to_time(value).to_i
+          when ::Time               then value
+          when ::Numeric, /\A\d+\z/ then ::Time.at(value.to_i)
+          when ::DateTime           then datetime_to_time(value)
+          when ::String             then ::Time.parse(value)
         end
       end
 

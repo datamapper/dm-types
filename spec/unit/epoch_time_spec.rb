@@ -21,22 +21,38 @@ describe DataMapper::Property::EpochTime do
       it { should == value.to_i }
     end
 
+    describe 'with nil' do
+      let(:value) { nil }
+
+      it { should == value }
+    end
+  end
+  
+  describe '#typecast' do
+    subject { @property.typecast(value) }
+    
     describe 'with a DateTime instance' do
       let(:value) { DateTime.now }
 
-      it { should == Time.parse(value.to_s).to_i }
+      it { should == Time.parse(value.to_s) }
     end
 
     describe 'with a number' do
       let(:value) { Time.now.to_i }
 
-      it { should == value }
+      it { should == ::Time.at(value) }
     end
+    
+    describe 'with a numeric string' do
+      let(:value) { Time.now.to_i.to_s }
 
-    describe 'with nil' do
-      let(:value) { nil }
+      it { should == ::Time.at(value.to_i) }
+    end
+    
+    describe 'with a DateTime string' do
+      let(:value) { '2011-07-11 15:00:04 UTC' }
 
-      it { should == value }
+      it { should == ::Time.parse(value) }
     end
   end
 
