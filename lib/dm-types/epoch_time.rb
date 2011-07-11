@@ -22,10 +22,10 @@ module DataMapper
 
       def typecast(value)
         case value
-          when ::Time      then value
-          when ::Numeric   then ::Time.at(value.to_i)
-          when ::DateTime  then datetime_to_time(value)
-          when ::String    then ::Time.parse(value)
+          when ::Time               then value
+          when ::Numeric, /\A\d+\z/ then ::Time.at(value.to_i)
+          when ::DateTime           then datetime_to_time(value)
+          when ::String             then ::Time.parse(value)
         end
       end
 

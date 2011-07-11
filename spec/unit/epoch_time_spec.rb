@@ -43,6 +43,12 @@ describe DataMapper::Property::EpochTime do
       it { should == ::Time.at(value) }
     end
     
+    describe 'with a numeric string' do
+      let(:value) { Time.now.to_i.to_s }
+
+      it { should == ::Time.at(value.to_i) }
+    end
+    
     describe 'with a DateTime string' do
       let(:value) { '2011-07-11 15:00:04 UTC' }
 
