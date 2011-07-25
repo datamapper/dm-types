@@ -12,7 +12,7 @@ module DataMapper
             attribute_set(name, block.call(self))
           end
           save_self
-          self.persisted_state = Resource::State::Immutable.new(self)
+          self.persistence_state = Resource::PersistenceState::Immutable.new(self)
           true
         end
 
