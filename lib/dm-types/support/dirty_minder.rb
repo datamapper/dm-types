@@ -137,13 +137,13 @@ module DataMapper
 
       # This catches any direct assignment, allowing us to hook the Hash or Array.
       def set(resource, value)
-        wrap_value(resource, value) unless value.frozen? || value.kind_of?(Wrapper)
+        wrap_value(resource, value) unless value.frozen? || value.kind_of?(Hooker)
         super
       end
 
       # This gets called when Resource#reload is called (instead of #set).
       def set!(resource, value)
-        wrap_value(resource, value) unless value.frozen? || value.kind_of?(Wrapper)
+        wrap_value(resource, value) unless value.frozen? || value.kind_of?(Hooker)
         super
       end
 
