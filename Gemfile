@@ -9,7 +9,7 @@ DM_VERSION     = '~> 1.1.0'
 DO_VERSION     = '~> 0.10.6'
 DM_DO_ADAPTERS = %w[ sqlite postgres mysql oracle sqlserver ]
 
-gem 'bcrypt-ruby', '~> 2.1.4'
+gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'dm-core',     DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}"
 gem 'fastercsv',   '~> 1.5.4'
 gem 'multi_json',  '~> 1.0.3'
