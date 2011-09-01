@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.version = "1.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Dan Kubb"]
-  s.date = %q{2011-05-25}
+  s.authors = [%q{Dan Kubb}]
+  s.date = %q{2011-09-01}
   s.description = %q{DataMapper plugin providing extra data types}
   s.email = %q{dan.kubb [a] gmail [d] com}
   s.extra_rdoc_files = [
@@ -39,6 +39,7 @@ Gem::Specification.new do |s|
     "lib/dm-types/paranoid_datetime.rb",
     "lib/dm-types/regexp.rb",
     "lib/dm-types/slug.rb",
+    "lib/dm-types/support/dirty_minder.rb",
     "lib/dm-types/support/flags.rb",
     "lib/dm-types/uri.rb",
     "lib/dm-types/uuid.rb",
@@ -55,7 +56,9 @@ Gem::Specification.new do |s|
     "spec/integration/api_key_spec.rb",
     "spec/integration/bcrypt_hash_spec.rb",
     "spec/integration/comma_separated_list_spec.rb",
+    "spec/integration/dirty_minder_spec.rb",
     "spec/integration/enum_spec.rb",
+    "spec/integration/epoch_time_spec.rb",
     "spec/integration/file_path_spec.rb",
     "spec/integration/flag_spec.rb",
     "spec/integration/ip_address_spec.rb",
@@ -88,9 +91,9 @@ Gem::Specification.new do |s|
     "tasks/yardstick.rake"
   ]
   s.homepage = %q{http://github.com/datamapper/dm-types}
-  s.require_paths = ["lib"]
+  s.require_paths = [%q{lib}]
   s.rubyforge_project = %q{datamapper}
-  s.rubygems_version = %q{1.7.2}
+  s.rubygems_version = %q{1.8.6}
   s.summary = %q{DataMapper plugin providing extra data types}
   s.test_files = [
     "spec/fixtures/api_user.rb",
@@ -105,7 +108,9 @@ Gem::Specification.new do |s|
     "spec/integration/api_key_spec.rb",
     "spec/integration/bcrypt_hash_spec.rb",
     "spec/integration/comma_separated_list_spec.rb",
+    "spec/integration/dirty_minder_spec.rb",
     "spec/integration/enum_spec.rb",
+    "spec/integration/epoch_time_spec.rb",
     "spec/integration/file_path_spec.rb",
     "spec/integration/flag_spec.rb",
     "spec/integration/ip_address_spec.rb",
@@ -137,7 +142,7 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<bcrypt-ruby>, ["~> 2.1.4"])
+      s.add_runtime_dependency(%q<bcrypt-ruby>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.1.0"])
       s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_runtime_dependency(%q<multi_json>, ["~> 1.0.3"])
@@ -149,7 +154,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.1"])
     else
-      s.add_dependency(%q<bcrypt-ruby>, ["~> 2.1.4"])
+      s.add_dependency(%q<bcrypt-ruby>, ["~> 3.0.0"])
       s.add_dependency(%q<dm-core>, ["~> 1.1.0"])
       s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
@@ -162,7 +167,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, ["~> 1.3.1"])
     end
   else
-    s.add_dependency(%q<bcrypt-ruby>, ["~> 2.1.4"])
+    s.add_dependency(%q<bcrypt-ruby>, ["~> 3.0.0"])
     s.add_dependency(%q<dm-core>, ["~> 1.1.0"])
     s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
     s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
