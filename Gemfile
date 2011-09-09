@@ -59,8 +59,10 @@ group :datamapper do
     gem "dm-#{adapter}-adapter", DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-#{adapter}-adapter#{REPO_POSTFIX}"
   end
 
+  gem "dm-migrations", :git => "#{DATAMAPPER}/dm-migrations.git", :branch => "custom_type_migration"
+
   plugins = ENV['PLUGINS'] || ENV['PLUGIN']
-  plugins = plugins.to_s.tr(',', ' ').split.push('dm-migrations').uniq
+  plugins = plugins.to_s.tr(',', ' ').split.uniq
 
   plugins.each do |plugin|
     gem plugin, DM_VERSION, SOURCE => "#{DATAMAPPER}/#{plugin}#{REPO_POSTFIX}"
