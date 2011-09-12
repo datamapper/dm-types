@@ -3,8 +3,8 @@ require 'dm-types/paranoid/base'
 module DataMapper
   class Property
     class ParanoidBoolean < Boolean
-      default   false
-      lazy      true
+      default false
+      lazy    true
 
       # @api private
       def bind

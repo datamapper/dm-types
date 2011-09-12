@@ -3,7 +3,7 @@ require 'dm-types/paranoid/base'
 module DataMapper
   class Property
     class ParanoidDateTime < DateTime
-      lazy      true
+      lazy true
 
       # @api private
       def bind

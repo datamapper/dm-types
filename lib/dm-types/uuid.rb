@@ -39,33 +39,24 @@ module DataMapper
     #  -- benburkert Nov 15, 08
     #
     class UUID < String
+      load_as UUIDTools::UUID
 
       length 36
-
-      # We need to override this method otherwise typecast_to_primitive won't be called.
-      # In the future we will set primitive to UUIDTools::UUID but this can happen only
-      # when adapters can handle it
-      def primitive?(value)
-        value.kind_of?(UUIDTools::UUID)
-      end
-
-      def valid?(value, negated = false)
-        super || dump(value).kind_of?(::String)
-      end
 
       def dump(value)
         value.to_s unless value.nil?
       end
 
       def load(value)
-        if primitive?(value)
+        if value_loaded?(value)
           value
         elsif !value.nil?
           UUIDTools::UUID.parse(value)
         end
       end
 
-      def typecast_to_primitive(value)
+      def typecast(value)
+        return if value.nil?
         load(value)
       end
 

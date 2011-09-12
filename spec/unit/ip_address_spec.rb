@@ -10,18 +10,6 @@ try_spec do
       @property = DataMapper::TypesFixtures::NetworkNode.properties[:ip_address]
     end
 
-    describe '#valid?' do
-      describe "with a String" do
-        subject { @property.valid?(@stored) }
-        it { subject.should be(true) }
-      end
-
-      describe "with an IPAddr" do
-        subject { @property.valid?(@input) }
-        it { subject.should be(true) }
-      end
-    end
-
     describe '.dump' do
       describe 'when argument is an IP address given as Ruby object' do
         before :all do

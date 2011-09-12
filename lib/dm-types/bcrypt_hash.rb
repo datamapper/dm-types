@@ -4,17 +4,14 @@ require 'bcrypt'
 module DataMapper
   class Property
     class BCryptHash < String
+      load_as BCrypt::Password
 
       length 60
-
-      def primitive?(value)
-        value.kind_of?(BCrypt::Password)
-      end
 
       def load(value)
         unless value.nil?
           begin
-            primitive?(value) ? value : BCrypt::Password.new(value)
+            value_loaded?(value) ? value : BCrypt::Password.new(value)
           rescue BCrypt::Errors::InvalidHash
             BCrypt::Password.create(value, :cost => BCrypt::Engine::DEFAULT_COST)
           end
@@ -25,7 +22,7 @@ module DataMapper
         load(value)
       end
 
-      def typecast_to_primitive(value)
+      def typecast(value)
         load(value)
       end
 

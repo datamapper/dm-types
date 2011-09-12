@@ -3,9 +3,11 @@ require 'dm-types/support/flags'
 
 module DataMapper
   class Property
-    class Flag < Integer
-
+    class Flag < Object
       include Flags
+
+      load_as ::Object
+      dump_as ::Integer
 
       def initialize(model, name, options = {})
         super

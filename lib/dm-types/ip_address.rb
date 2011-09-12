@@ -4,20 +4,13 @@ require 'dm-core'
 module DataMapper
   class Property
     class IPAddress < String
+      load_as IPAddr
 
       length 39
 
-      def primitive?(value)
-        value.kind_of?(IPAddr)
-      end
-
-      def valid?(value, negated = false)
-        super || dump(value).kind_of?(::String)
-      end
-
       def load(value)
-        if value.nil?
-          nil
+        if value.nil? || value_loaded?(value)
+          value
         elsif value.is_a?(::String)
           unless value.empty?
             IPAddr.new(value)
@@ -33,8 +26,8 @@ module DataMapper
         value.to_s unless value.nil?
       end
 
-      def typecast_to_primitive(value)
-        load(value)
+      def typecast(value)
+        load(value) unless value.nil?
       end
 
     end # class IPAddress

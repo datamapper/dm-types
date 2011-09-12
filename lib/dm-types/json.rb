@@ -5,24 +5,13 @@ require 'multi_json'
 module DataMapper
   class Property
     class Json < Text
-
-      def custom?
-        true
-      end
-
-      def primitive?(value)
-        value.kind_of?(::Array) || value.kind_of?(::Hash)
-      end
-
-      def valid?(value, negated = false)
-        super || dump(value).kind_of?(::String)
-      end
+      load_as ::Object
 
       def load(value)
-        if value.nil?
-          nil
+        if value.nil? || value_loaded?(value)
+          value
         elsif value.is_a?(::String)
-          typecast_to_primitive(value)
+          typecast(value)
         else
           raise ArgumentError.new("+value+ of a property of JSON type must be nil or a String")
         end
@@ -36,8 +25,18 @@ module DataMapper
         end
       end
 
-      def typecast_to_primitive(value)
-        MultiJson.decode(value.to_s)
+      def typecast(value)
+        return if value.nil?
+
+        if value_loaded?(value)
+          value
+        else
+          MultiJson.decode(value.to_s)
+        end
+      end
+
+      def value_loaded?(value)
+        value.kind_of?(::Array) || value.kind_of?(::Hash)
       end
 
       include ::DataMapper::Property::DirtyMinder

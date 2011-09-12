@@ -5,10 +5,7 @@ require 'dm-types/support/dirty_minder'
 module DataMapper
   class Property
     class Yaml < Text
-
-      def custom?
-        true
-      end
+      load_as ::Object
 
       def load(value)
         if value.nil?

@@ -3,9 +3,11 @@ require 'dm-types/support/flags'
 
 module DataMapper
   class Property
-    class Enum < Integer
-
+    class Enum < Object
       include Flags
+
+      load_as ::Object
+      dump_as ::Integer
 
       def initialize(model, name, options = {})
         @flag_map = {}
@@ -33,7 +35,8 @@ module DataMapper
         end
       end
 
-      def typecast_to_primitive(value)
+      def typecast(value)
+        return if value.nil?
         # Attempt to typecast using the class of the first item in the map.
         case flag_map[1]
         when ::Symbol then value.to_sym

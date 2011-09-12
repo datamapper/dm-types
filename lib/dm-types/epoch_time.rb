@@ -2,7 +2,8 @@ require 'dm-core'
 
 module DataMapper
   class Property
-    class EpochTime < Integer
+    class EpochTime < Time
+      dump_as ::Integer
 
       def load(value)
         if value.kind_of?(::Numeric)
@@ -14,10 +15,6 @@ module DataMapper
 
       def dump(value)
         value.to_i if value
-      end
-
-      def custom?
-        true
       end
 
       def typecast(value)
