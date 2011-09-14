@@ -84,6 +84,7 @@ Gem::Specification.new do |s|
     "spec/unit/paranoid_datetime_spec.rb",
     "spec/unit/regexp_spec.rb",
     "spec/unit/uri_spec.rb",
+    "spec/unit/uuid_spec.rb",
     "spec/unit/yaml_spec.rb",
     "tasks/spec.rake",
     "tasks/yard.rake",
