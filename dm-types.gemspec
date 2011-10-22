@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-10-09"
+  s.date = "2011-10-22"
   s.description = "DataMapper plugin providing extra data types"
   s.email = "dan.kubb [a] gmail [d] com"
   s.extra_rdoc_files = [
@@ -104,7 +104,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.2.0"])
       s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_runtime_dependency(%q<multi_json>, ["~> 1.0.3"])
-      s.add_runtime_dependency(%q<json>, ["~> 1.5.4"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.6.1"])
       s.add_runtime_dependency(%q<stringex>, ["~> 1.3.0"])
       s.add_runtime_dependency(%q<uuidtools>, ["~> 2.1.2"])
       s.add_development_dependency(%q<dm-validations>, ["~> 1.2.0"])
@@ -116,7 +116,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<dm-core>, ["~> 1.2.0"])
       s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
       s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
-      s.add_dependency(%q<json>, ["~> 1.5.4"])
+      s.add_dependency(%q<json>, ["~> 1.6.1"])
       s.add_dependency(%q<stringex>, ["~> 1.3.0"])
       s.add_dependency(%q<uuidtools>, ["~> 2.1.2"])
       s.add_dependency(%q<dm-validations>, ["~> 1.2.0"])
@@ -129,7 +129,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<dm-core>, ["~> 1.2.0"])
     s.add_dependency(%q<fastercsv>, ["~> 1.5.4"])
     s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
-    s.add_dependency(%q<json>, ["~> 1.5.4"])
+    s.add_dependency(%q<json>, ["~> 1.6.1"])
     s.add_dependency(%q<stringex>, ["~> 1.3.0"])
     s.add_dependency(%q<uuidtools>, ["~> 2.1.2"])
     s.add_dependency(%q<dm-validations>, ["~> 1.2.0"])
