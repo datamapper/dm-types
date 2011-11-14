@@ -1,6 +1,8 @@
 require 'pathname'
 
-source 'http://rubygems.org'
+source :rubygems
+
+gemspec
 
 SOURCE         = ENV.fetch('SOURCE', :git).to_sym
 REPO_POSTFIX   = SOURCE == :path ? ''                                : '.git'
@@ -10,21 +12,10 @@ DO_VERSION     = '~> 0.10.6'
 DM_DO_ADAPTERS = %w[ sqlite postgres mysql oracle sqlserver ]
 CURRENT_BRANCH = ENV.fetch('GIT_BRANCH', 'master')
 
-gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'dm-core',     DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-core#{REPO_POSTFIX}", :branch => CURRENT_BRANCH
-gem 'fastercsv',   '~> 1.5.4'
-gem 'multi_json',  '~> 1.0.3'
-gem 'json',        '~> 1.5.4', :platforms => [ :ruby_18 ]
-gem 'stringex',    '~> 1.3.0'
-gem 'uuidtools',   '~> 2.1.2'
 
 group :development do
-
   gem 'dm-validations', DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-validations#{REPO_POSTFIX}", :branch => CURRENT_BRANCH
-  gem 'jeweler',        '~> 1.6.4'
-  gem 'rake',           '~> 0.9.2'
-  gem 'rspec',          '~> 1.3.2'
-
 end
 
 platforms :mri_18 do
