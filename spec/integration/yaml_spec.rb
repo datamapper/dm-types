@@ -64,6 +64,24 @@ try_spec do
           end
         end
       end
+
+      describe 'with inventions as a string' do
+        before :all do
+          object = "Foo and Bar" #.freeze
+          @resource.inventions = object
+        end
+
+        describe 'when dumped and loaded again' do
+          before :all do
+            @resource.save.should be(true)
+            @resource.reload
+          end
+
+          it 'has correct inventions' do
+            @resource.inventions.should == 'Foo and Bar'
+          end
+        end
+      end
     end
   end
 end
