@@ -22,6 +22,8 @@ module DataMapper
       end
 
       def dump(value)
+        value = ::String.new(value) if value.kind_of?(::String)
+        #p value.object_id if value.kind_of?(::String)
         if value.nil?
           nil
         elsif value.is_a?(::String) && value =~ /^---/
