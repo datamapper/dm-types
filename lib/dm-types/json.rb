@@ -21,7 +21,7 @@ module DataMapper
         if value.nil? || value.is_a?(::String)
           value
         else
-          MultiJson.encode(value)
+          MultiJson.dump(value)
         end
       end
 
@@ -31,7 +31,7 @@ module DataMapper
         if value_loaded?(value)
           value
         else
-          MultiJson.decode(value.to_s)
+          MultiJson.load(value.to_s)
         end
       end
 
