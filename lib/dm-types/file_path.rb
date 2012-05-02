@@ -6,7 +6,7 @@ module DataMapper
     class FilePath < String
       load_as Pathname
 
-      length 255
+      length 260
 
       def load(value)
         Pathname.new(value) unless DataMapper::Ext.blank?(value)
