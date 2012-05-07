@@ -103,7 +103,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bcrypt-ruby>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<dm-core>, ["~> 1.2.0"])
       s.add_runtime_dependency(%q<fastercsv>, ["~> 1.5.4"])
-      s.add_runtime_dependency(%q<multi_json>, ["~> 1.0.3"])
+      s.add_runtime_dependency(%q<multi_json>, ["~> 1.3.2"])
       s.add_runtime_dependency(%q<json>, ["~> 1.6.1"])
       s.add_runtime_dependency(%q<stringex>, ["~> 1.3.0"])
       s.add_runtime_dependency(%q<uuidtools>, ["~> 2.1.2"])
