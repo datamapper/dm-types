@@ -15,14 +15,14 @@ Gem::Specification.new do |gem|
   gem.require_paths = [ "lib" ]
   gem.version       = '1.2.1'
 
-  gem.add_runtime_dependency('bcrypt-ruby', '~> 3.0.0')
+  gem.add_runtime_dependency('bcrypt-ruby', '~> 3.0')
+  gem.add_runtime_dependency('fastercsv',   '~> 1.5')
+  gem.add_runtime_dependency('multi_json',  '~> 1.0')
+  gem.add_runtime_dependency('json',        '~> 1.6')
+  gem.add_runtime_dependency('stringex',    '~> 1.3')
+  gem.add_runtime_dependency('uuidtools',   '~> 2.1')
   gem.add_runtime_dependency('dm-core',     '~> 1.2.0')
-  gem.add_runtime_dependency('fastercsv',   '~> 1.5.4')
-  gem.add_runtime_dependency('multi_json',  '~> 1.0.3')
-  gem.add_runtime_dependency('json',        '~> 1.6.1')
-  gem.add_runtime_dependency('stringex',    '~> 1.3.0')
-  gem.add_runtime_dependency('uuidtools',   '~> 2.1.2')
 
-  gem.add_development_dependency('rake',  '~> 0.9.2')
-  gem.add_development_dependency('rspec', '~> 1.3.2')
+  gem.add_development_dependency('rake',  '~> 0.9')
+  gem.add_development_dependency('rspec', '~> 1.3')
 end
