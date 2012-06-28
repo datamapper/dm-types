@@ -21,7 +21,6 @@ gem 'uuidtools',   '~> 2.1.2'
 group :development do
 
   gem 'dm-validations', DM_VERSION, SOURCE => "#{DATAMAPPER}/dm-validations#{REPO_POSTFIX}", :branch => CURRENT_BRANCH
-  gem 'jeweler',        '~> 1.6.4'
   gem 'rake',           '~> 0.9.2'
   gem 'rspec',          '~> 1.3.2'
 
