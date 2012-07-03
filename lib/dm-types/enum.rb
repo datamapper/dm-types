@@ -4,7 +4,7 @@ require 'dm-types/support/flags'
 module DataMapper
   class Property
     class Enum < Integer
-      min 0
+      min 1
 
       include Flags
 
@@ -13,7 +13,7 @@ module DataMapper
 
         flags = options.fetch(:flags, self.class.flags)
         flags.each_with_index do |flag, i|
-          @flag_map[i + 1] = flag
+          @flag_map[i.succ] = flag
         end
 
         if self.class.accepted_options.include?(:set) && !options.include?(:set)
