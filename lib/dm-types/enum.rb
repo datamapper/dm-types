@@ -4,6 +4,7 @@ require 'dm-types/support/flags'
 module DataMapper
   class Property
     class Enum < Integer
+      min 0
 
       include Flags
 
@@ -18,6 +19,8 @@ module DataMapper
         if self.class.accepted_options.include?(:set) && !options.include?(:set)
           options[:set] = @flag_map.values_at(*@flag_map.keys.sort)
         end
+
+        options[:max] = @flag_map.size
 
         super
       end
