@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.name          = "dm-types"
   gem.require_paths = [ "lib" ]
-  gem.version       = '1.2.1'
+  gem.version       = '1.2.2'
 
   gem.add_runtime_dependency('bcrypt-ruby', '~> 3.0')
   gem.add_runtime_dependency('fastercsv',   '~> 1.5')
