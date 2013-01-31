@@ -1,4 +1,5 @@
 require 'yaml'
+require 'safe_yaml'
 require 'dm-core'
 require 'dm-types/support/dirty_minder'
 
@@ -14,7 +15,7 @@ module DataMapper
         if value.nil?
           nil
         elsif value.is_a?(::String)
-          ::YAML.load(value)
+          ::YAML.safe_load(value)
         else
           raise ArgumentError, '+value+ of a property of YAML type must be nil or a String'
         end

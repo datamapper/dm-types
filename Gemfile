@@ -14,6 +14,7 @@ gem 'bcrypt-ruby', '~> 3.0'
 gem 'fastercsv',   '~> 1.5'
 gem 'multi_json',  '~> 1.0'
 gem 'json',        '~> 1.6', :platforms => [ :ruby_18 ]
+gem 'safe_yaml',   '~> 0.5.2'
 gem 'stringex',    '~> 1.3'
 gem 'uuidtools',   '~> 2.1'
 
