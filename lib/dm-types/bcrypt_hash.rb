@@ -4,26 +4,20 @@ require 'bcrypt'
 module DataMapper
   class Property
     class BCryptHash < String
+      include PassThroughLoadDump
 
       length 60
 
-      def primitive?(value)
-        value.kind_of?(BCrypt::Password)
-      end
-
-      def load(value)
-        return value if value.nil? || primitive?(value)
+      def typecast(value)
+        return value if value.nil? || value.kind_of?(BCrypt::Password)
         BCrypt::Password.new(value)
       rescue BCrypt::Errors::InvalidHash
         BCrypt::Password.create(value)
       end
 
       def dump(value)
-        load(value)
-      end
-
-      def typecast_to_primitive(value)
-        load(value)
+        hash = typecast(value)
+        hash.to_s if hash
       end
 
     end # class BCryptHash
