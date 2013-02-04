@@ -17,7 +17,10 @@ module DataMapper
 
       def dump(value)
         hash = typecast(value)
-        hash.to_s if hash
+        return if hash.nil?
+        hash_string = hash.to_s
+        hash_string.encode!('UTF-8') if hash_string.respond_to?(:encode!)
+        hash_string
       end
 
     end # class BCryptHash
