@@ -39,3 +39,5 @@ notifications:
 matrix:
   allow_failures:
     - rvm: rbx-18mode
+    - rvm: rbx-19mode
+      env: "GIT_BRANCH=release-1.2 ADAPTER=yaml"
