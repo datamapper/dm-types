@@ -16,10 +16,13 @@ tmtags
 
 ## Rubinius
 *.rbc
+.rbx
 
 ## PROJECT::GENERAL
 *.gem
 coverage
+profiling
+turbulence
 rdoc
 pkg
 tmp
@@ -30,7 +33,7 @@ measurements
 
 ## BUNDLER
 .bundle
-Gemfile.*
+Gemfile.lock
 
 ## PROJECT::SPECIFIC
 spec/db/
