@@ -34,3 +34,6 @@ Gemfile.*
 
 ## PROJECT::SPECIFIC
 spec/db/
+
+## NETBEANS
+/nbproject
