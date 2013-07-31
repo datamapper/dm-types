@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('bcrypt-ruby', '~> 3.0.0')
   gem.add_runtime_dependency('fastercsv',   '~> 1.5.4')
   gem.add_runtime_dependency('multi_json', '>= 1.7.7')
-  gem.add_runtime_dependency('stringex', '>= 2.0.3')
+  gem.add_runtime_dependency('stringex', '>= 2.0.8')
   gem.add_runtime_dependency('uuidtools',   '~> 2.1.2')
 
   gem.add_development_dependency('rake',  '~> 0.9.2')
