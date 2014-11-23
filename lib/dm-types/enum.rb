@@ -40,7 +40,12 @@ module DataMapper
         # Attempt to typecast using the class of the first item in the map.
         case flag_map[1]
         when ::Symbol then value.to_sym
-        when ::String then value.to_s
+        when ::String then 
+          if !value.empty?
+            value.to_s
+          else
+            nil
+          end
         when ::Fixnum then value.to_i
         else               value
         end
