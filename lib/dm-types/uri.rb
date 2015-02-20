@@ -7,7 +7,7 @@ module DataMapper
 
       # Maximum length chosen based on recommendation:
       # http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-an-url
-      length 2000
+      length 2083
 
       def custom?
         true
