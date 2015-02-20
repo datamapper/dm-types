@@ -106,8 +106,8 @@ try_spec do
               resource.reload
             end
 
-            it 'has the same original URI' do
-              resource.uri.to_s.should eql(uri)
+            it 'matches a normalized form of the original URI' do
+              resource.uri.should eql(Addressable::URI.parse(uri).normalize)
             end
           end
         end

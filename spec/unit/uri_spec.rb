@@ -49,6 +49,15 @@ try_spec do
           subject.load('').should eql(Addressable::URI.parse(''))
         end
       end
+
+      context 'with a non-normalized URI' do
+        let(:uri_str) { 'http://www.example.com:80'                       }
+        let(:uri)     { Addressable::URI.parse('http://www.example.com/') }
+
+        it 'returns the URI as a normalized Addressable::URI' do
+          subject.load(uri_str).should eql(uri)
+        end
+      end
     end
 
     describe '.typecast' do

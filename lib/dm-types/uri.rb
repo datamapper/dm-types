@@ -22,7 +22,8 @@ module DataMapper
       end
 
       def load(value)
-        Addressable::URI.parse(value)
+        uri = Addressable::URI.parse(value)
+        uri.normalize unless uri.nil?
       end
 
       def dump(value)
