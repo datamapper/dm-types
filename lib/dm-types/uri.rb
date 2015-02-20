@@ -26,7 +26,7 @@ module DataMapper
       end
 
       def dump(value)
-        value.to_s unless value.nil?
+        value.to_str unless value.nil?
       end
 
       def typecast_to_primitive(value)
