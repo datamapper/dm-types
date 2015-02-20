@@ -8,7 +8,7 @@ DATAMAPPER     = SOURCE == :path ? Pathname(__FILE__).dirname.parent : 'http://g
 DM_VERSION     = '~> 1.2.0'
 DO_VERSION     = '~> 0.10.6'
 DM_DO_ADAPTERS = %w[ sqlite postgres mysql oracle sqlserver ]
-CURRENT_BRANCH = ENV.fetch('GIT_BRANCH', 'master')
+CURRENT_BRANCH = ENV.fetch('GIT_BRANCH') { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 gem 'bcrypt-ruby', '~> 3.0'
 gem 'fastercsv',   '~> 1.5'
