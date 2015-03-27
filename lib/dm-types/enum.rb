@@ -3,7 +3,9 @@ require 'dm-types/support/flags'
 
 module DataMapper
   class Property
-    class Enum < Object
+    class Enum < Integer
+      min 1
+
       include Flags
 
       load_as ::Object
@@ -14,12 +16,14 @@ module DataMapper
 
         flags = options.fetch(:flags, self.class.flags)
         flags.each_with_index do |flag, i|
-          @flag_map[i + 1] = flag
+          @flag_map[i.succ] = flag
         end
 
         if self.class.accepted_options.include?(:set) && !options.include?(:set)
           options[:set] = @flag_map.values_at(*@flag_map.keys.sort)
         end
+
+        options[:max] = @flag_map.size
 
         super
       end

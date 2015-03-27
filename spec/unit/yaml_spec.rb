@@ -41,25 +41,25 @@ try_spec do
 
       describe 'when YAML encoded primitive string is provided' do
         it 'does not do double encoding' do
-          YAML.load(@property.dump("--- yaml encoded string\n")).should == 'yaml encoded string'
+          YAML.safe_load(@property.dump("--- yaml encoded string\n")).should == 'yaml encoded string'
         end
       end
 
       describe 'when regular Ruby string is provided' do
         it 'dumps argument to YAML' do
-          YAML.load(@property.dump('dump me (to yaml)')).should == 'dump me (to yaml)'
+          YAML.safe_load(@property.dump('dump me (to yaml)')).should == 'dump me (to yaml)'
         end
       end
 
       describe 'when Ruby array is provided' do
         it 'dumps argument to YAML' do
-          YAML.load(@property.dump([ 1, 2, 3 ])).should == [ 1, 2, 3 ]
+          YAML.safe_load(@property.dump([ 1, 2, 3 ])).should == [ 1, 2, 3 ]
         end
       end
 
       describe 'when Ruby hash is provided' do
         it 'dumps argument to YAML' do
-          YAML.load(@property.dump({ :datamapper => 'Data access layer in Ruby' })).should == { :datamapper => 'Data access layer in Ruby' }
+          YAML.safe_load(@property.dump('datamapper' => 'Data access layer in Ruby')).should == { 'datamapper' => 'Data access layer in Ruby' }
         end
       end
     end

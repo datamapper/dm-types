@@ -5,6 +5,8 @@ module DataMapper
     class ParanoidDateTime < DateTime
       lazy true
 
+      dump_as ::DateTime
+
       # @api private
       def bind
         property_name = name.inspect

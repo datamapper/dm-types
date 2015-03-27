@@ -15,7 +15,7 @@ try_spec do
       end
 
       it 'persists the password on initial save' do
-        @resource.password.should       == 'DataMapper R0cks!'
+        @resource.password.should    == 'DataMapper R0cks!'
         @people.last.password.should == 'password1'
       end
 
