@@ -14,6 +14,8 @@ env:
   - "ADAPTER=mysql DM_DB_USER=root DM_DB_PASSWORD=''"
   - "ADAPTER=postgres DM_DB_USER=postgres DM_DB_PASSWORD=''"
 
+cache: bundler
+
 sudo: true
 
 services:
