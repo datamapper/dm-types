@@ -4,59 +4,78 @@ require './spec/fixtures/bookmark'
 
 try_spec do
   describe DataMapper::Property::URI do
-    before do
-      @uri_str = 'http://example.com/path/to/resource/'
-      @uri     = Addressable::URI.parse(@uri_str)
+    subject { DataMapper::TypesFixtures::Bookmark.properties[:uri] }
 
-      @property = DataMapper::TypesFixtures::Bookmark.properties[:uri]
-    end
+    let(:uri)     { Addressable::URI.parse(uri_str)        }
+    let(:uri_str) { 'http://example.com/path/to/resource/' }
+
+    it { should be_instance_of(described_class) }
 
     describe '.dump' do
-      it 'returns the URI as a String' do
-        @property.dump(@uri).should == @uri_str
-      end
-
-      describe 'when given nil' do
-        it 'returns nil' do
-          @property.dump(nil).should be_nil
+      context 'with an instance of Addressable::URI' do
+        it 'returns the URI as a String' do
+          subject.dump(uri).should eql(uri_str)
         end
       end
 
-      describe 'when given an empty string' do
+      context 'with nil' do
+        it 'returns nil' do
+          subject.dump(nil).should be(nil)
+        end
+      end
+
+      context 'with an empty string' do
         it 'returns an empty URI' do
-          @property.dump('').should == ''
+          subject.dump('').should eql('')
         end
       end
     end
 
     describe '.load' do
-      it 'returns the URI as Addressable' do
-        @property.load(@uri_str).should == @uri
-      end
-
-      describe 'when given nil' do
-        it 'returns nil' do
-          @property.load(nil).should be_nil
+      context 'with a string' do
+        it 'returns the URI as an Addressable::URI' do
+          subject.load(uri_str).should eql(uri)
         end
       end
 
-      describe 'if given an empty String' do
+      context 'with nil' do
+        it 'returns nil' do
+          subject.load(nil).should be(nil)
+        end
+      end
+
+      context 'with an empty string' do
         it 'returns an empty URI' do
-          @property.load('').should == Addressable::URI.parse('')
+          subject.load('').should eql(Addressable::URI.parse(''))
+        end
+      end
+
+      context 'with a non-normalized URI' do
+        let(:uri_str) { 'http://www.example.com:80'                       }
+        let(:uri)     { Addressable::URI.parse('http://www.example.com/') }
+
+        it 'returns the URI as a normalized Addressable::URI' do
+          subject.load(uri_str).should eql(uri)
         end
       end
     end
 
     describe '.typecast' do
-      describe 'given instance of Addressable::URI' do
+      context 'with an instance of Addressable::URI' do
         it 'does nothing' do
-          @property.typecast(@uri).should == @uri
+          subject.typecast(uri).should eql(uri)
         end
       end
 
-      describe 'when given a string' do
+      context 'with a string' do
         it 'delegates to .load' do
-          @property.typecast(@uri_str).should == @uri
+          subject.typecast(uri_str).should eql(uri)
+        end
+      end
+
+      context 'with nil' do
+        it 'returns nil' do
+          subject.typecast(nil).should be(nil)
         end
       end
     end
