@@ -10,11 +10,14 @@ rvm:
   - rbx-19mode
 
 env:
-  - "ADAPTER=in_memory"
-  - "ADAPTER=yaml"
-  - "ADAPTER=sqlite"
-  - "ADAPTER=mysql DM_DB_USER=root DM_DB_PASSWORD=''"
-  - "ADAPTER=postgres DM_DB_USER=postgres DM_DB_PASSWORD=''"
+  global:
+    - JRUBY_OPTS="$JRUBY_OPTS --2.0 -J-Xmx1g --debug"
+  matrix:
+    - "ADAPTER=in_memory"
+    - "ADAPTER=yaml"
+    - "ADAPTER=sqlite"
+    - "ADAPTER=mysql DM_DB_USER=root DM_DB_PASSWORD=''"
+    - "ADAPTER=postgres DM_DB_USER=postgres DM_DB_PASSWORD=''"
 
 cache: bundler
 
