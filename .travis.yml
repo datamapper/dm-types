@@ -23,7 +23,7 @@ services:
   - postgresql
 
 before_install:
-  - sudo apt-get update -qq
+  - until sudo apt-get update -qq; do :; done  # retry until successful
   - sudo apt-get install -qq postgresql-server-dev-9.3
 
 bundler_args: --without yard guard metrics benchmarks --retry 3
