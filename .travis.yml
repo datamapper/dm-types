@@ -19,7 +19,6 @@ cache: bundler
 sudo: true
 
 services:
-  - sqlite3
   - mysql
   - postgresql
 
