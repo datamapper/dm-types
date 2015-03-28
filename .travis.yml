@@ -26,13 +26,13 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq postgresql-server-dev-9.3
 
+bundler_args: --without yard guard metrics benchmarks --retry 3
+
 before_script:
   - mysql -e "create database datamapper_alternate_tests;"
   - mysql -e "create database datamapper_default_tests;"
   - psql  -c "create database datamapper_default_tests;" -U postgres
   - psql  -c "create database datamapper_alternate_tests;" -U postgres
-
-bundler_args: --without yard guard metrics benchmarks --retry 3
 
 script: "bundle exec rake spec"
 
