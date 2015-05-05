@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('dm-core',     '~> 1.3.0.beta')
   gem.add_runtime_dependency('fastercsv',   '~> 1.5.4')
   gem.add_runtime_dependency('multi_json',  '~> 1.3.2')
-  gem.add_runtime_dependency('safe_yaml',   '~> 1.0.0')
+  gem.add_runtime_dependency('safe_yaml',   ['>= 0.6.1', '< 2'])
   gem.add_runtime_dependency('stringex',    '~> 1.4')
   gem.add_runtime_dependency('uuidtools',   '~> 2.1.2')
 
