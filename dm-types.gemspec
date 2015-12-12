@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = %w[lib]
   gem.version       = DataMapper::Types::VERSION
 
-  gem.add_runtime_dependency('bcrypt',      '~> 3.0.0')
+  gem.add_runtime_dependency('bcrypt',      '~> 3.0')
   gem.add_runtime_dependency('dm-core',     '~> 1.3.0.beta')
   gem.add_runtime_dependency('fastercsv',   '~> 1.5.4')
   gem.add_runtime_dependency('multi_json',  '~> 1.3.2')
