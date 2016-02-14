@@ -30,8 +30,8 @@ try_spec do
           @result = @bcrypt_hash.dump(@input)
         end
 
-        it 'returns instance of BCrypt::Password' do
-          @result.should be_an_instance_of(BCrypt::Password)
+        it 'returns instance of String' do
+          @result.should be_an_instance_of(String)
         end
 
         it 'returns a string that is 60 characters long' do

@@ -43,7 +43,7 @@ try_spec do
           end
 
           it 'loads inventions list to the state when it was dumped/persisted with keys being strings' do
-            @resource.inventions.should == @input
+            @resource.inventions.should == [{ 'name' => 'carbon telephone transmitter' }, { 'name' => 'light bulb' }, { 'name' => 'electric grid' }]
           end
         end
       end

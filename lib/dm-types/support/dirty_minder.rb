@@ -148,7 +148,7 @@ module DataMapper
 
       # Catch any direct assignment (#set), and any Resource#reload (set!).
       def set!(resource, value)
-        # Do not extend non observed value classes 
+        # Do not extend non observed value classes
         if Hooker::MUTATION_METHODS.keys.detect { |klass| value.kind_of?(klass) }
           hook_value(resource, value) unless value.kind_of? Hooker
         end
