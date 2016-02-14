@@ -37,3 +37,6 @@ Gemfile.lock
 
 ## PROJECT::SPECIFIC
 spec/db/
+
+## NETBEANS
+/nbproject
