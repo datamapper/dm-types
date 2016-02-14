@@ -17,7 +17,7 @@ try_spec do
 
       describe 'with the default value' do
         it 'returns it as an array' do
-          @resource.size.should eql([DataMapper::TypesFixtures::TShirt.properties[:size].default])
+          @resource.size.should eql(DataMapper::TypesFixtures::TShirt.properties[:size].default)
         end
       end
 
