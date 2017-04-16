@@ -12,10 +12,10 @@ module DataMapper
         if value.nil? || value_loaded?(value)
           value
         elsif value.is_a?(::String)
-          unless value.empty?
-            IPAddr.new(value)
-          else
+          if value.empty?
             IPAddr.new("0.0.0.0")
+          else
+            IPAddr.new(value)
           end
         else
           raise ArgumentError.new("+value+ must be nil or a String")
